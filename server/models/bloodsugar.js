@@ -1,9 +1,8 @@
 const pool = require('../db/config'); 
 
 const bloodSugarSchema = async () => {
-    const query = `CREATE TABLE IF NOT EXISTS users (
-        entryid INT AUTO_INCREMENT PRIMARY KEY,
-        id INT AUTO_INCREMENT, 
+    const query = `CREATE TABLE IF NOT EXISTS bloodsugar (
+        id INT AUTO_INCREMENT PRIMARY KEY,
         measurement_date DATE,
         level DECIMAL (3,2)
 );`
