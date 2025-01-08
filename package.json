@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/FelixW01/Vital-view#readme",
   "dependencies": {
-    "dotenv": "^16.4.7"
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
   }
 }

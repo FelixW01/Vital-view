@@ -1,0 +1,446 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+section {
+  padding: 50px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+/************************************************* Navbar  */
+.navbar {
+  background-color: #6ba4aa;
+  color: #ffffff;
+  position: sticky;
+  top: 0;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 20px;
+}
+
+.logo {
+  color: #fff;
+  font-size: 1.5em;
+  text-decoration: none;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li {
+  display: inline-block;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
+  font-size: 1.3rem;
+}
+
+.nav-links a:hover {
+  background-color: #f6f3f3;
+  color: #333;
+  border-radius: 5px;
+}
+
+/************************************************************ Hamburger Menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger .bar {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+/************************************************************** Responsive Styling */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    padding: 20px;
+  }
+
+  .nav-links li {
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+/* ********************************** Home Page  ****************************/
+
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden; /* Hide the images outside the container */
+}
+
+.slider {
+  display: flex;
+  width: 300%; /* 3 original images + 3 duplicate images = 6 slides in total (100% * 6) */
+  animation: slideAnimation 5s linear infinite;
+  right: 0 !important; /* Infinite animation loop */
+}
+
+.slide {
+  width: 100vw; /* Each slide takes up the full width of the viewport */
+  height: 100vh; /* Each slide takes up the full height of the viewport */
+  flex-shrink: 0; /* Prevent shrinking of slides */
+}
+
+.slide img {
+  width: 100%; /* Ensure the image takes the full width of the slide */
+  height: 100%; /* Ensure the image takes the full height of the slide */
+  object-fit: cover; /* Ensure the image covers the full slide without distortion */
+}
+
+/* Keyframes to handle the sliding effect */
+@keyframes slideAnimation {
+  0% {
+    transform: translateX(0); /* Start at the first image */
+  }
+  33.33% {
+    transform: translateX(-100%); /* Slide to the second image */
+  }
+  66.66% {
+    transform: translateX(-200%); /* Slide to the third image */
+  }
+  100% {
+    transform: translateX(
+      -300%
+    ); /* Loop back to the first image after all slides have transitioned */
+  }
+  100% {
+    -webkit-transform: translateX(0);
+  }
+}
+
+/* *********** Graph Page ************** */
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.info-section,
+.input-section,
+.chart-section,
+.recommendations {
+  margin-bottom: 30px;
+}
+
+input {
+  padding: 8px;
+  font-size: 16px;
+  width: 100px;
+  margin-right: 10px;
+}
+
+button {
+  padding: 8px 16px;
+  font-size: 16px;
+  background-color: #69a5a3;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #a9d8e8;
+}
+
+canvas {
+  width: 100%;
+  height: 400px;
+}
+
+#foodRecommendations {
+  margin-top: 20px;
+}
+/********************* login Page **********************/
+.login-container {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Form Title */
+.login-form h2 {
+  margin-bottom: 30px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Input Fields */
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+  width: 30rem;
+  justify-content: center;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #333;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.input-group input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Submit Button */
+.btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+/* Sign-up Link */
+.signup-link {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+.signup-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+/**************************** sign up page **************************** */
+.signup-container {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Form Title */
+.signup-form h2 {
+  margin-bottom: 30px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Input Fields */
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #333;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Birthday Group */
+.birthday-group {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.birthday-group select {
+  width: 32%; /* Three dropdowns will each take up 1/3rd of the container */
+}
+
+/* Submit Button */
+.btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+/* Sign-In Link */
+.signin-link {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+.signin-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.signin-link a:hover {
+  text-decoration: underline;
+}
+
+/* *************************************** footer ************************/
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: cadetblue;
+}
+footer .col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1px;
+}
+/* footer .brand-logo {
+    margin-bottom: 30px;
+  } */
+
+footer h4 {
+  font-size: 25px;
+  padding-bottom: 20px;
+}
+
+footer p {
+  font-size: 15px;
+  margin: 0 0 8px 0;
+  color: white;
+}
+
+footer a {
+  font-size: 20px;
+  color: white;
+  text-decoration: none;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+footer a:hover {
+  color: rgb(10, 10, 10);
+  transition: 0.3s ease-in-out;
+}
+
+footer .icon a {
+  margin-top: 4px;
+  color: white;
+  font-size: 3rem;
+}
+
+footer i:hover {
+  color: rgb(10, 10, 10);
+  transition: 0.3s ease-in-out;
+}
+
+footer .copyright {
+  width: 100%;
+  text-align: center;
+}
+
+/* responsiveness */
+@media (max-width: 768px) {
+  footer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  footer .col {
+    width: 100%;
+    align-items: center;
+  }
+
+  footer .icon a {
+    font-size: 2rem;
+  }
+}
