@@ -11,5 +11,21 @@ const pool = mysql.createPool({
 }).promise();
 // .promise() here enables async await when dealing with the pool
 
+// pool.getConnection((err, connection) => {
+//     if (err) {
+//       console.log('Could not connect to DB', err)
+//     }
+//     console.log('Connected to MySQL server.');
+  
+//     const sql = 'CREATE DATABASE IF NOT EXISTS vital_db';
+//     connection.query(sql, (err, result) => {
+//       connection.release()
+
+//       if (err) {
+//         console.log('Could not connect to DB', err)
+//       }
+//       console.log('Database created');
+//     });
+// });
 
 module.exports = pool;
