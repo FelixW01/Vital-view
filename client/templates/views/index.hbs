@@ -1,0 +1,94 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="#" class="logo">Diabetes Tracker</a>
+        <!-- ******************************************Hamburger Menu -->
+        <div class="hamburger" onclick="toggleMenu()">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <!--********************************************* Navigation Links -->
+        <ul class="nav-links">
+          <li><a href="chart.html">Blood Traker</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="#">Resources</a></li>
+        </ul>
+      </div>
+    </nav>
+    <main>
+      <!-- **************************************************** Graph -->
+      <div class="hero-container">
+        <div class="slider">
+          <!-- Original slides -->
+          <div class="slide">
+            <img src="images/foodDiabetes.webp" alt="Image 1" />
+          </div>
+          <div class="slide"><img src="images/heart.avif" alt="Image 2" /></div>
+          <div class="slide">
+            <img src="images/image3.webp" alt="Image 3" />
+          </div>
+          <!-- Duplicated slides for continuous loop -->
+          <div class="slide">
+            <img src="images/foodDiabetes.webp" alt="Image 1" />
+          </div>
+          <div class="slide"><img src="images/heart.avif" alt="Image 2" /></div>
+          <div class="slide">
+            <img src="images/image3.webp" alt="Image 3" />
+          </div>
+        </div>
+      </div>
+    </main>
+    <!--******************************************************************* footer -->
+    <footer class="section-p1">
+      <div class="col">
+        <!-- <img src="#" class="brand-logo" /> -->
+        <h4>Contact</h4>
+        <p><strong>Address:</strong> 8888 Brakeman Dr Waxhaw, NC 28173</p>
+        <p><strong>Phone:</strong> +1 (980) 829-6987</p>
+      </div>
+      <div class="col">
+        <h4>Quick Links</h4>
+        <a href="#">Home</a>
+        <a href="#">Login or Sign up</a>
+      </div>
+      <div class="col">
+        <h4>Follow us</h4>
+        <div class="icon">
+          <a href="https://www.facebook.com/?_rdr"><i
+              class="fa-brands fa-facebook"
+            ></i></a>
+          <a href="https://www.instagram.com/accounts/login/"><i
+              class="fa-brands fa-instagram"
+            ></i></a>
+          <a href="#"><i class="fa-brands fa-github"></i></a>
+          <a
+            href="https://x.com/i/flow/login?input_flow_data=%7B%22requested_variant%22%3A%22eyJteCI6IjIifQ%3D%3D%22%7D"
+          ><i class="fa-brands fa-square-x-twitter"></i></a>
+          <a href="https://www.youtube.com/"><i
+              class="fa-brands fa-youtube"
+            ></i></a>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>
+          Copyright &copy;2025; Designed by
+          <span class="designer">Dream Team</span>
+        </p>
+      </div>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>
