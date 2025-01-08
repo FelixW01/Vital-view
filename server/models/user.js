@@ -8,6 +8,10 @@ const userSchema = async () => {
     lastName VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
+    sugarId INT,
+    foodId INT,
+    FOREIGN KEY (sugarId) REFERENCES bloodsugar(sugarId),
+    FOREIGN KEY (foodId) REFERENCES food(foodId),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );`
