@@ -1,0 +1,25 @@
+{
+  "name": "vital-view",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd server && node server.js",
+    "install": "cd server && npm i && cd ../client && npm i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FelixW01/Vital-view.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FelixW01/Vital-view/issues"
+  },
+  "homepage": "https://github.com/FelixW01/Vital-view#readme",
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  }
+}
