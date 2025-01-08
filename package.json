@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/FelixW01/Vital-view#readme",
   "dependencies": {
-    "dotenv": "^16.4.7"
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
+    "postman-request": "^2.88.1-postman.40"
   }
 }
