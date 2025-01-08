@@ -3,12 +3,16 @@ const path = require('path')
 const hbs = require('hbs')
 const dotenv = require('dotenv')
 const routes = require('./routes');
+const { userSchema } = require('./models/user');
 require('./db/config');
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000
+
+// Make sure user table is present
+userSchema();
 
 const publicDirectoryPath = path.join(__dirname, '../client/templates/public')
 const viewsPath = path.join(__dirname, '../client/templates/views')
