@@ -2,7 +2,8 @@ const express = require('express');
 const path = require('path')
 const hbs = require('hbs')
 const dotenv = require('dotenv')
-const mysql = require('mysql2');
+const routes = require('./routes');
+require('./db/config');
 
 dotenv.config();
 
@@ -19,29 +20,13 @@ app.set('views', viewsPath)
 hbs.registerPartials(partialsPath)
 
 // Setup static directory to serve
+app.use(express.json());
 app.use(express.static(publicDirectoryPath))
+// Setup routes
+app.use(routes);
 
-app.get('', (req, res) => {
-  res.render('index')
-})
-
-console.log('Database Host:', process.env.DB_HOST);
-console.log('Database User:', process.env.DB_USER);
-console.log('Database Name:', process.env.DB_NAME);
-
-const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME,
-});
-
-connection
-  .promise()
-  .query('SELECT * FROM users')
-  .then(([rows, fields]) => {
-      console.log(rows);
-});
+// Uses express router to make server.js less cluttered
+app.use('/', routes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT: ${PORT}`)
