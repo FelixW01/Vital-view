@@ -3,8 +3,100 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up</title>
+     <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
   </head>
   <body>
-    <h1>Sign Up</h1>
+    {{>header}}
+    <main>
+    <div class="signup-container">
+        <form action="#" method="POST" class="signup-form">
+          <h2>Create Account</h2>
+    
+          <!-- First Name -->
+          <div class="input-group">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" name="first-name" required placeholder="Enter your first name">
+          </div>
+    
+          <!-- Last Name -->
+          <div class="input-group">
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" name="last-name" required placeholder="Enter your last name">
+          </div>
+    
+          <!-- Birthday (Month, Day, Year) -->
+          <div class="input-group">
+            <label for="month">Birthday</label>
+            <div class="birthday-group">
+              <select id="month" name="month" required>
+                <option value="">Month</option>
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+              </select>
+    
+              <select id="day" name="day" required>
+                <option value="">Day</option>
+                <!-- Day options from 1 to 31 -->
+                <script>
+                  for (let i = 1; i <= 31; i++) {
+                    document.write(`<option value="${i < 10 ? '0' + i : i}">${i}</option>`);
+                  }
+                </script>
+              </select>
+    
+              <select id="year" name="year" required>
+                <option value="">Year</option>
+                <!-- Year options from 1900 to the current year -->
+                <script>
+                  let currentYear = new Date().getFullYear();
+                  for (let i = currentYear; i >= 1900; i--) {
+                    document.write(`<option value="${i}">${i}</option>`);
+                  }
+                </script>
+              </select>
+            </div>
+          </div>
+    
+          <!-- Email -->
+          <div class="input-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email address">
+          </div>
+    
+          <!-- Password -->
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required placeholder="Create a new password">
+          </div>
+    
+          <!-- Submit Button -->
+          <div class="input-group">
+            <button type="submit" class="btn">Sign Up</button>
+          </div>
+    
+          <!-- Sign In Link -->
+          <div class="signin-link">
+            <p>Already have an account? <a href="login.html">Sign In</a></p>
+          </div>
+        </form>
+      </div>
+</main>
+    {{>footer}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>
