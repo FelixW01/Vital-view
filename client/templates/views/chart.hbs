@@ -1,9 +1,10 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chart</title>
-    <link rel="stylesheet" href="css/styles.css"/>
+    <link rel="stylesheet" href="css/styles.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -11,43 +12,50 @@
   </head>
   <body>
     {{>header}}
+
     <main>
-        <div class="container"></div>
+      <!-- Container for main content -->
+      <section class="container">
         <h1>Diabetes Tracker and Food Recommendations</h1>
 
-        <div class="info-section">
+        <section class="info-section">
           <h2>Diabetes in the USA</h2>
           <p>
             Over 34 million Americans have diabetes, and another 88 million have
             prediabetes. Diabetes is a chronic condition that can affect many
             aspects of your life.
           </p>
-        </div>
+        </section>
 
-        <div class="input-section">
+        <!-- Input Section for Blood Sugar Level -->
+        <section class="input-section">
           <label for="bloodSugar">Enter your blood sugar level (mg/dL): </label>
-          <input
+          <input 
             type="number"
             id="bloodSugar"
-            placeholder="Blood Sugar Level"
+            placeholder="Blood Sugar"
             min="50"
             max="500"
           />
           <button onclick="updateChart()">Add Data</button>
-        </div>
+        </section>
 
-        <div class="chart-section">
+        <!-- Chart Section -->
+        <section class="chart-section">
           <h2>Your Blood Sugar Levels</h2>
           <canvas id="bloodSugarChart"></canvas>
-        </div>
+        </section>
 
-        <div class="recommendations">
+        <!-- Food Recommendations Section -->
+        <section class="recommendations">
           <h2>Food Recommendations</h2>
           <div id="foodRecommendations"></div>
-        </div>
-      </div>
+        </section>
+      </section>
     </main>
-        {{>footer}}
+
+    {{>footer}}
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/js/app.js"></script>
   </body>

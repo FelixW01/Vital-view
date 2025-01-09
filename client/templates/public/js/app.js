@@ -19,8 +19,8 @@ const bloodSugarChart = new Chart(ctx, {
       {
         label: "Blood Sugar Level (mg/dL)",
         data: bloodSugarLevels,
-        borderColor: "rgba(75, 192, 192, 1)",
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        borderColor: "#003B5C",
+        backgroundColor: "#D9534F",
         fill: true,
       },
     ],
