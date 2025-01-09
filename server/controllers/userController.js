@@ -4,9 +4,9 @@ const { v4: uuidv4 } = require('uuid');
 const jwt = require('jsonwebtoken');
 
 const registerUser = async (req, res) => {
-    const { userName, email, password, firstName, lastName } = req.body
-    console.log(userName, email, password, firstName, lastName, '<<<<<<<< REQ.BODY')
-    if (!userName || !email || !password || !firstName || !lastName) {
+    const { email, password, firstName, lastName } = req.body
+    console.log(email, password, firstName, lastName, '<<<<<<<< REQ.BODY')
+    if (!email || !password || !firstName || !lastName) {
         return res.status(400).json({ message: 'All fields are required' });
     }
 
@@ -21,15 +21,15 @@ const registerUser = async (req, res) => {
         }
 
         const query = `
-            INSERT INTO users (id, username, firstName, lastName, email, password)
-            VALUES (?, ?, ?, ?, ?, ?);
+            INSERT INTO users (id, firstName, lastName, email, password)
+            VALUES (?, ?, ?, ?, ?);
         `;
-        await pool.query(query, [userId, userName, firstName, lastName, email, hashedPassword]);
+        await pool.query(query, [userId, firstName, lastName, email, hashedPassword]);
 
 
         // Generate JWT token on register
         const token = jwt.sign(
-            { id: userId, username: userName, email: email },
+            { id: userId, firstName:firstName, lastName: lastName, email: email },
             process.env.SECRET_KEY,
             { expiresIn: '2d' }
         );
@@ -40,7 +40,6 @@ const registerUser = async (req, res) => {
             user: {
                 firstName: firstName,
                 lastName: lastName,
-                username: userName,
                 id: userId,
                 email: email
             },
@@ -74,7 +73,7 @@ const loginUser = async (req, res) => {
 
         // Generate JWT token
         const token = jwt.sign(
-            { id: user.id, username: user.username, email: user.email },
+            { id: user.id, firstname: user.firstName, lastname: user.lastName, email: user.email },
             process.env.SECRET_KEY,
             { expiresIn: '2d' }
         );
@@ -84,7 +83,6 @@ const loginUser = async (req, res) => {
             user: {
                 firstName: user.firstName,
                 lastName: user.lastName,
-                username: user.username, 
                 id: user.id, 
                 email: user.email
             },
