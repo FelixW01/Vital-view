@@ -2,10 +2,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <h1>HOME!</h1>
-
+    {{>header}}
+    <main>
+      <!-- **************************************************** Graph -->
+      <div class="hero-container">
+        <div class="slider">
+          <!-- Original slides -->
+          <div class="slide">
+            <img src="images/foodDiabetes.webp" alt="Image 1" />
+          </div>
+          <div class="slide"><img src="images/heart.avif" alt="Image 2" /></div>
+          <div class="slide">
+            <img src="images/image3.webp" alt="Image 3" />
+          </div>
+          <!-- Duplicated slides for continuous loop -->
+          <div class="slide">
+            <img src="images/foodDiabetes.webp" alt="Image 1" />
+          </div>
+          <div class="slide"><img src="images/heart.avif" alt="Image 2" /></div>
+          <div class="slide">
+            <img src="images/image3.webp" alt="Image 3" />
+          </div>
+        </div>
+      </div>
+    </main>
+    {{>footer}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>
