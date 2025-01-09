@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const pool = require('../db/config.js'); 
 const { v4: uuidv4 } = require('uuid');
+const jwt = require('jsonwebtoken');
 
 const registerUser = async (req, res) => {
     const { userName, email, password, firstName, lastName } = req.body
@@ -25,10 +26,26 @@ const registerUser = async (req, res) => {
         `;
         await pool.query(query, [userId, userName, firstName, lastName, email, hashedPassword]);
 
-        res.status(200).json({ message: 'Account created successfully' })
 
-        // Logs in user upon successful register
-        // await loginUser(req, res)
+        // Generate JWT token on register
+        const token = jwt.sign(
+            { id: userId, username: userName, email: email },
+            process.env.SECRET_KEY,
+            { expiresIn: '2d' }
+        );
+
+        // Users are logged in as soon as they register
+        res.status(200).json({
+            message: 'Account created successfully',
+            user: {
+                firstName: firstName,
+                lastName: lastName,
+                username: userName,
+                id: userId,
+                email: email
+            },
+            token // Send the JWT token
+        });
 
     } catch(err) {
         console.error('Could not register user: ', err);
@@ -55,6 +72,13 @@ const loginUser = async (req, res) => {
             return res.status(401).json({ message: 'Invalid password' });
         }
 
+        // Generate JWT token
+        const token = jwt.sign(
+            { id: user.id, username: user.username, email: user.email },
+            process.env.SECRET_KEY,
+            { expiresIn: '2d' }
+        );
+
         res.status(200).json({ 
             message: 'Login successful', 
             user: {
@@ -63,7 +87,9 @@ const loginUser = async (req, res) => {
                 username: user.username, 
                 id: user.id, 
                 email: user.email
-            }
+            },
+            // Send JWT token with result payload
+            token
         });
 
     } catch(err) {
