@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const apiRoutes = require("./api");
+const callApi = require('../../client/templates/public/js/foodData')
 
 // Home page
 router.get("/", (req, res) => {
@@ -14,7 +15,13 @@ router.get("/about", (req, res) => {
 
 // Chart/app page
 router.get("/chart", (req, res) => {
-  res.render("chart");
+  let responseData = callApi();
+
+  console.log(responseData)
+
+  res.render("chart", {
+    food: responseData
+  });
 });
 
 //login page
