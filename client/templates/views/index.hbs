@@ -1,38 +1,18 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="css/styles.css">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-
-    <nav class="navbar">
-      <div class="navbar-container">
-        <a href="#" class="logo">Diabetes Tracker</a>
-        <!-- ******************************************Hamburger Menu -->
-        <div class="hamburger" onclick="toggleMenu()">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
-
-        <!--********************************************* Navigation Links -->
-        <ul class="nav-links">
-          <li><a href="chart.html">Blood Traker</a></li>
-          <li><a href="login.html">Login</a></li>
-          <li><a href="resource.hbs">Resources</a></li>
-        </ul>
-      </div>
-    </nav>
-
-    <main>
-      <!-- **************************************************** Graph -->
+    {{>header}}
+  
       <div class="hero-container">
         <div class="slider">
           <!-- Original slides -->

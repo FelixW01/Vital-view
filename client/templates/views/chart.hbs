@@ -1,10 +1,62 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chart</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
   </head>
   <body>
-    <h1>chart</h1>
+    {{>header}}
+
+    <main>
+      <!-- Container for main content -->
+      <section class="container">
+        <h1>Diabetes Tracker and Food Recommendations</h1>
+
+        <section class="info-section">
+          <h2>Diabetes in the USA</h2>
+          <p>
+            Over 34 million Americans have diabetes, and another 88 million have
+            prediabetes. Diabetes is a chronic condition that can affect many
+            aspects of your life.
+          </p>
+        </section>
+
+        <!-- Input Section for Blood Sugar Level -->
+        <section class="input-section">
+          <label for="bloodSugar">Enter your blood sugar level (mg/dL): </label>
+          <input 
+            type="number"
+            id="bloodSugar"
+            placeholder="Blood Sugar"
+            min="50"
+            max="500"
+          />
+          <button onclick="updateChart()">Add Data</button>
+        </section>
+
+        <!-- Chart Section -->
+        <section class="chart-section">
+          <h2>Your Blood Sugar Levels</h2>
+          <canvas id="bloodSugarChart"></canvas>
+        </section>
+
+        <!-- Food Recommendations Section -->
+        <section class="recommendations">
+          <h2>Food Recommendations</h2>
+          <div id="foodRecommendations"></div>
+        </section>
+      </section>
+    </main>
+
+    {{>footer}}
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/app.js"></script>
   </body>
 </html>
