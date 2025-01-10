@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd server && node server.js",
+    "start": "cd server && nodemon server.js",
     "install": "cd server && npm i && cd ../client && npm i"
   },
   "repository": {
@@ -21,6 +21,7 @@
   "homepage": "https://github.com/FelixW01/Vital-view#readme",
   "dependencies": {
     "dotenv": "^16.4.7",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9"
   }
 }
