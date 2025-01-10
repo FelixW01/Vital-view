@@ -49,7 +49,16 @@
     <!-- Food Recommendations Section -->
         <section class="recommendations">
           <h2>Food Recommendations</h2>
+
   <div id="foodRecommendations">
+
+    <form id="recipeSearchForm" action="/chart" method="GET">
+  <label for="searchInput">Search for recipes:</label>
+  <input type="text" id="searchInput" name="q" placeholder="Example: Chicken">
+  <button type="submit">Search</button>
+</form>
+
+
   {{#if food.length}}
     {{#each food}}
       {{#if this.label}} <!-- Ensure only valid items are rendered -->
