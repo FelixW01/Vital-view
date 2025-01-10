@@ -117,23 +117,6 @@ h2 {
   object-fit: cover;
 }
 
-/* @keyframes slideAnimation {
-  0% {
-    transform: translateX(0);
-  }
-  33.33% {
-    transform: translateX(-100%);
-  }
-  66.66% {
-    transform: translateX(-200%);
-  }
-  100% {
-    transform: translateX(-300%);
-  }
-  100% {
-    -webkit-transform: translateX(0);
-  }
-} */
 
 /************************************************************************** Graph Page *****************************************************/
 .container {
@@ -657,12 +640,12 @@ footer .copyright {
   height: 100vh;
   overflow-x: hidden; /* Hide the images outside the container */
 }
-.slider {
+/* .slider {
   display: flex;
-  width: 300%; /* 3 original images + 3 duplicate images = 6 slides in total (100% * 6) */
+  width: 300%; 
   animation: slideAnimation 35s linear infinite;
-  right: 0 !important; /* Infinite animation loop */
-}
+  right: 0 !important; 
+} */
 
 /* Extra Small Screens (Mobile) */
 @media (max-width: 480px) {
@@ -756,9 +739,17 @@ button:hover {
   margin-bottom: 30px;
 }
 
+/* .index-middle-2-section{
+  background-color: white;
+} */
+
 .index-middle-2-section img {
   width: 50%;
   padding-top: 10px;
+}
+
+h5{
+  font-size: 25px;
 }
 
 .index-middle-2-section p {
@@ -784,17 +775,17 @@ button:hover {
 .info-box {
   background-color: #216d90;
   border: 2px solid #ccc;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 20px;
   text-align: center;
   width: 32%;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add box shadow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .info-box:hover {
-  transform: translateY(-5px); /* Move the box up on hover */
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+  transform: translateY(-2px); 
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); 
 }
 
 .info-box p {
@@ -805,7 +796,7 @@ button:hover {
 .info-box2 {
   background-color: #216d90;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 20px;
   text-align: center;
   width: 32%;
@@ -815,7 +806,7 @@ button:hover {
 
 .info-box2:hover {
   /* Move the box up on hover */
-  transform: translateY(-5px);
+  transform: translateY(-2px);
   /* Increase shadow on hover */
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
@@ -828,7 +819,7 @@ button:hover {
 .info-box3 {
   background-color: #216d90;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 20px;
   text-align: center;
   width: 32%;
@@ -838,7 +829,7 @@ button:hover {
 }
 
 .info-box3:hover {
-  transform: translateY(-5px);
+  transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
@@ -875,25 +866,7 @@ h2 {
   gap: 20px;
 }
 
-.info-box,
-.info-box2,
-.info-box3 {
-  background-color: #216d90;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 20px;
-  text-align: center;
-  width: 32%;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
 
-.info-box:hover,
-.info-box2:hover,
-.info-box3:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-}
 
 /* Responsive Styles */
 @media (max-width: 768px) {
