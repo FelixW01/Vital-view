@@ -17,7 +17,12 @@ const callApi = async (query) => {
           source: hit.recipe.source,
           url: hit.recipe.url,
           image: hit.recipe.image,
-          ingredients: hit.recipe.ingredientLines,
+          calories: hit.recipe.totalNutrients.ENERC_KCAL 
+            ? Math.round(hit.recipe.totalNutrients.ENERC_KCAL.quantity) 
+            : 'N/A', // Round calories!!
+          sugar: hit.recipe.totalNutrients.SUGAR 
+            ? Math.round(hit.recipe.totalNutrients.SUGAR.quantity) 
+            : 'N/A', // Round sugar!!!
         }));
       } else {
         return [];
@@ -27,6 +32,8 @@ const callApi = async (query) => {
       throw error;
     }
   };
+  
+  
 
   module.exports = callApi;
 
