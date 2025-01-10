@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const apiRoutes = require("./api");
+const callApi = require('../../client/templates/public/js/foodData')
 
 // Home page
 router.get("/", (req, res) => {
@@ -13,9 +14,17 @@ router.get("/about", (req, res) => {
 });
 
 // Chart/app page
-router.get("/chart", (req, res) => {
-  res.render("chart");
+router.get("/chart", async (req, res) => {
+  try {
+      const responseData = await callApi();
+      console.log(responseData); // Log data to check for blanks
+      res.render("chart", { food: responseData });
+  } catch (error) {
+      console.error('Error in /chart route:', error);
+      res.status(500).send("An error occurred while fetching data.");
+  }
 });
+
 
 //login page
 router.get("/login", (req, res) => {
