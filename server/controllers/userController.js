@@ -53,7 +53,6 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
     const { email, password } = req.body
     try {
-
         const [rows, fields] = await pool.query('SELECT * FROM users WHERE email = ?;', [email])
 
         if (rows.length === 0) {
@@ -78,13 +77,10 @@ const loginUser = async (req, res) => {
 
         res.status(200).json({ 
             message: 'Login successful', 
-<<<<<<< HEAD
-=======
             user: {
                 firstName: user.firstName,
                 lastName: user.lastName,
             },
->>>>>>> main
             // Send JWT token with result payload
             token,
         });

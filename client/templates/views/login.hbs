@@ -19,17 +19,17 @@
         </div>
 
     <section class="login-section">
-        <form action="#" method="POST" class="login-form">
+        <form method="POST" class="login-form" id="loginForm">
           <h2>Login</h2>
 
           <div class="input-group">
-            <label for="username">Email</label>
+            <label for="email">Email</label>
             <input
               type="text"
-              id="username"
-              name="username"
+              id="email"
+              name="email"
               required
-              placeholder="Enter your username"
+              placeholder="Enter your email"
             />
           </div>
 
@@ -40,7 +40,7 @@
               id="password"
               name="password"
               required
-              placeholder="Enter your password"
+              placeholder="Password"
             />
           </div>
 
@@ -58,6 +58,6 @@
 </section>
     {{>footer}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="/js/app.js"></script>
+    <script src="/js/login.js"></script>
   </body>
 </html>
