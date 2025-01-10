@@ -94,7 +94,6 @@ const loginUser = async (req, res) => {
 
 const getMe = async (req, res) => {
     try {
-        console.log('hi')
         const user = req.user;
 
         if (user) {
