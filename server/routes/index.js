@@ -14,15 +14,17 @@ router.get("/about", (req, res) => {
 });
 
 // Chart/app page
-router.get("/chart", (req, res) => {
-  let responseData = callApi();
-
-  console.log(responseData)
-
-  res.render("chart", {
-    food: responseData
-  });
+router.get("/chart", async (req, res) => {
+  try {
+      const responseData = await callApi();
+      console.log(responseData); // Log data to check for blanks
+      res.render("chart", { food: responseData });
+  } catch (error) {
+      console.error('Error in /chart route:', error);
+      res.status(500).send("An error occurred while fetching data.");
+  }
 });
+
 
 //login page
 router.get("/login", (req, res) => {

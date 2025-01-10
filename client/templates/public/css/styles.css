@@ -476,6 +476,45 @@ footer .copyright {
     font-size: 2rem;
   }
 }
+
+
+/**************************************************************************** Recipe Grid **************************************************************************/
+
+.recommendations #foodRecommendations {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 20px; 
+}
+
+.food-item {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.food-item h3 {
+  margin: 10px 0;
+}
+
+.food-item img {
+  width: 200px; 
+  height: 150px; 
+  object-fit: cover; 
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+.food-item ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  text-align: left;
+}
+
+
+
+
 /**************************************************************************** Responsive Styling **************************************************************************/
 @media (max-width: 768px) {
   .nav-links {
