@@ -21,7 +21,7 @@ const registerUser = async (req, res) => {
         }
 
         const query = `
-            INSERT INTO users (id, firstName, lastName, email, password)
+            INSERT INTO users (userId, firstName, lastName, email, password)
             VALUES (?, ?, ?, ?, ?);
         `;
         await pool.query(query, [userId, firstName, lastName, email, hashedPassword]);
