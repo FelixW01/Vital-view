@@ -40,8 +40,6 @@ const registerUser = async (req, res) => {
             user: {
                 firstName: firstName,
                 lastName: lastName,
-                id: userId,
-                email: email
             },
             token // Send the JWT token
         });
@@ -83,8 +81,6 @@ const loginUser = async (req, res) => {
             user: {
                 firstName: user.firstName,
                 lastName: user.lastName,
-                id: user.id, 
-                email: user.email
             },
             // Send JWT token with result payload
             token
@@ -93,6 +89,22 @@ const loginUser = async (req, res) => {
     } catch(err) {
         console.error('Could not find user: ', err);
         res.status(500).json({ message: 'Server Error' });
+    }
+}
+
+const getMe = async (req, res) => {
+    try {
+        const user = req.user;
+
+        if (user) {
+            const { email, password, id, ...safeUserData } = user;
+            res.status(200).json(safeUserData);
+        } else {
+            res.status(404).json({ error: 'User not found' });
+        }
+    } catch (err) {
+        console.log('Error fetching user', err);
+        res.status(500).json({ error: 'Server error' });
     }
 }
 
@@ -105,4 +117,4 @@ const getUsers = async (req, res) => {
     }
 }
 
-module.exports = { registerUser, getUsers, loginUser };
+module.exports = { registerUser, getUsers, loginUser, getMe };
