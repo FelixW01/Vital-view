@@ -6,7 +6,31 @@
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
-    <h1>ABOUT</h1>
+    {{>header}}
+    <h1>OUR RESOURCES</h1>
+    <div class="resource-container">
+        <div class="resource-box1">
+            <img src="images/redcross.png" alt="Glucose Meter">
+            <p> </p>
+        </div>
+        <div class="resource-box2">
+            <img src="images/" alt="Lancet Needle">
+            <p></p>
+        </div>
+    </div>
+
+<div class="resource-conatiner2">
+    <div class="resource-box3">
+            <img src="images/" alt="Test Strips">
+            <p></p>
+        </div>
+        <div class="resource-box4">
+            <img src="images/" alt="Test Strips">
+            <p></p>
+        </div>
+        </div>
+
+
     <div class="donate-container">
         <h1>Donate Now</h1>
         <form action="#" method="post">
@@ -19,8 +43,11 @@
             <label for="amount">Donation Amount:</label>
             <input type="number" id="amount" name="amount" required>
 
-            <button type="submit">Donate</button>
+          <button type="submit" class="donate-button">Donate</button>
         </form>
     </div>
+
+
+    {{>footer}}
   </body>
 </html>
