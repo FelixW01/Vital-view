@@ -117,6 +117,24 @@ h2 {
   object-fit: cover;
 }
 
+/* @keyframes slideAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  33.33% {
+    transform: translateX(-100%);
+  }
+  66.66% {
+    transform: translateX(-200%);
+  }
+  100% {
+    transform: translateX(-300%);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+  }
+} */
+
 /************************************************************************** Graph Page *****************************************************/
 .container {
   max-width: 800px;
@@ -514,6 +532,45 @@ footer .copyright {
     font-size: 2rem;
   }
 }
+
+
+/**************************************************************************** Recipe Grid **************************************************************************/
+
+.recommendations #foodRecommendations {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 20px; 
+}
+
+.food-item {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.food-item h3 {
+  margin: 10px 0;
+}
+
+.food-item img {
+  width: 200px; 
+  height: 150px; 
+  object-fit: cover; 
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+.food-item ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  text-align: left;
+}
+
+
+
+
 /**************************************************************************** Responsive Styling **************************************************************************/
 @media (max-width: 768px) {
   .nav-links {
@@ -567,6 +624,44 @@ footer .copyright {
   /* .Form {
     padding: 20px 80px;
   } */
+}
+
+/* Extra Small Screens (Mobile) */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 0 10px;
+  }
+
+  .login-form {
+    padding: 15px;
+  }
+
+  .login-form h2 {
+    font-size: 24px;
+  }
+
+  .input-group input {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .btn {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+/* ********************************** Home Page  ****************************/
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden; /* Hide the images outside the container */
+}
+.slider {
+  display: flex;
+  width: 300%; /* 3 original images + 3 duplicate images = 6 slides in total (100% * 6) */
+  animation: slideAnimation 35s linear infinite;
+  right: 0 !important; /* Infinite animation loop */
 }
 
 /* Extra Small Screens (Mobile) */
