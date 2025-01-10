@@ -6,7 +6,7 @@ const APP_ID = process.env.APP_ID;
 
 const callApi = async () => {
     try {
-        const url = `https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=${APP_ID}&app_key=${API_KEY}`;
+        const url = `https://api.edamam.com/api/recipes/v2?type=public&q=beef&app_id=${APP_ID}&app_key=${API_KEY}`;
         const response = await axios.get(url);
 
         if (response.data.hits && response.data.hits.length > 0) {
