@@ -102,3 +102,30 @@ function showFoodRecommendations(bloodSugar) {
 
   recommendationsDiv.innerHTML = recommendations;
 }
+
+async function fetchUserData() {
+const authToken = localStorage.getItem('authtoken');
+
+if (authToken) {
+  try {
+    const response = await fetch('/api/me', {
+      method: 'GET',
+      headers: { 
+        'Content-type': 'application/json',
+        'Authorization': `Bearer ${authToken}`,
+       },
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        console.log(data, '<<<< data');
+      } else {
+      console.log('User could not be fetched')
+    }
+  } catch (err) {
+    console.log(err, 'Error')
+  }
+ }
+}
+
+fetchUserData()
