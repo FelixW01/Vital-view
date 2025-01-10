@@ -36,3 +36,4 @@ registerForm.addEventListener('submit', async e => {
     console.log(err, 'Error')
   }
 })
+
