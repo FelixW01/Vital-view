@@ -53,7 +53,6 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
     const { email, password } = req.body
     try {
-
         const [rows, fields] = await pool.query('SELECT * FROM users WHERE email = ?;', [email])
 
         if (rows.length === 0) {
@@ -71,7 +70,7 @@ const loginUser = async (req, res) => {
 
         // Generate JWT token
         const token = jwt.sign(
-            { id: user.id, firstname: user.firstName, lastname: user.lastName, email: user.email },
+            { id: user.id, email: user.email },
             process.env.SECRET_KEY,
             { expiresIn: '2d' }
         );
@@ -83,11 +82,11 @@ const loginUser = async (req, res) => {
                 lastName: user.lastName,
             },
             // Send JWT token with result payload
-            token
+            token,
         });
 
     } catch(err) {
-        console.error('Could not find user: ', err);
+        console.error('Error during login', err);
         res.status(500).json({ message: 'Server Error' });
     }
 }
