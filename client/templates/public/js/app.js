@@ -1,15 +1,13 @@
-// frontend JS
-// Function to manage the navigation menu on small screens
+// ****************************************** Hamburger ********************
 function toggleMenu() {
   const navLinks = document.querySelector(".nav-links");
   navLinks.classList.toggle("active");
 }
-// Initialize data for the graph
+// *********************************************  Chart  ************************
 let bloodSugarLevels = [];
 let timeLabels = [];
-let lastTimestamp = 0; // to keep track of time for x-axis
+let lastTimestamp = 0;
 
-// Create a chart
 const ctx = document.getElementById("bloodSugarChart").getContext("2d");
 const bloodSugarChart = new Chart(ctx, {
   type: "line",
@@ -46,11 +44,9 @@ const bloodSugarChart = new Chart(ctx, {
   },
 });
 
-// Function to add data to the graph
 function updateChart() {
   const bloodSugarInput = document.getElementById("bloodSugar").value;
 
-  // Validate input
   if (
     !bloodSugarInput ||
     isNaN(bloodSugarInput) ||
@@ -61,31 +57,25 @@ function updateChart() {
     return;
   }
 
-  const currentTime = lastTimestamp + 1; // Increment time by 1 second (or any increment you prefer)
+  const currentTime = lastTimestamp + 1;
   lastTimestamp = currentTime;
 
-  // Push the blood sugar level and time
   bloodSugarLevels.push(parseInt(bloodSugarInput));
   timeLabels.push(currentTime);
 
-  // Update the chart with new data
   bloodSugarChart.update();
 
-  // Show food recommendations
   showFoodRecommendations(parseInt(bloodSugarInput));
 
-  // Clear the input field after submission
   document.getElementById("bloodSugar").value = "";
 }
 
-// Function to show food recommendations based on blood sugar level
 function showFoodRecommendations(bloodSugar) {
   const recommendationsDiv = document.getElementById("foodRecommendations");
-  recommendationsDiv.innerHTML = ""; // Clear previous recommendations
+  recommendationsDiv.innerHTML = "";
 
   let recommendations = "";
 
-  // Provide food recommendations based on the blood sugar level
   if (bloodSugar < 70) {
     recommendations =
       "Your blood sugar is low. Try eating a small snack with 15g of carbohydrates (ex: a glass of juice, a piece of fruit).";
@@ -102,30 +92,61 @@ function showFoodRecommendations(bloodSugar) {
 
   recommendationsDiv.innerHTML = recommendations;
 }
+// ********************************** login /sign up and SignOut *******************************
 
-async function fetchUserData() {
-const authToken = localStorage.getItem('authtoken');
+function updateNavLinks() {
+  const authToken = localStorage.getItem("authtoken");
 
-if (authToken) {
-  try {
-    const response = await fetch('/api/me', {
-      method: 'GET',
-      headers: { 
-        'Content-type': 'application/json',
-        'Authorization': `Bearer ${authToken}`,
-       },
-    });
-
-    if (response.ok) {
-        const data = await response.json();
-        console.log(data, '<<<< data');
-      } else {
-      console.log('User could not be fetched')
-    }
-  } catch (err) {
-    console.log(err, 'Error')
+  if (authToken) {
+    document.getElemeentById("loginLink").style.display = "block";
+    document.getElementById("signupLink").style.display = "block";
+    document.getElementById("signoutLink").style.display = "none";
   }
- }
 }
 
-fetchUserData()
+window.addEventListener("DOMContentLoaded", updateChart);
+
+function signOut() {
+  localStorage.reemoveItem("authtoken");
+
+  updateNavLinks();
+}
+
+function simulateLogin() {
+  localStorgae.reemoveItem("authtoken", "user-auth-token");
+
+  updateNavLinks();
+}
+
+function simulateLogout() {
+  localStorage.removeItem("authtoken");
+
+  updateNavLinks();
+}
+// **********************
+async function fetchUserData() {
+  const authToken = localStorage.getItem("authtoken");
+
+  if (authToken) {
+    try {
+      const response = await fetch("/api/me", {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data, "<<<< data");
+      } else {
+        console.log("User could not be fetched");
+      }
+    } catch (err) {
+      console.log(err, "Error");
+    }
+  }
+}
+
+fetchUserData();

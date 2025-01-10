@@ -11,25 +11,24 @@
   </head>
   <body>
     {{>header}}
-    <section>
     <div class="Form">
       <section class="login-container">
         <div class="left-image">
           <img src="/images/loginPic.avif" alt="Diabetes Awareness" />
         </div>
 
-    <section class="login-section">
+    <div class="login-section">
         <form action="#" method="POST" class="login-form">
           <h2>Login</h2>
 
           <div class="input-group">
-            <label for="username">Username</label>
+            <label for="email">Email</label>
             <input
               type="text"
-              id="username"
-              name="username"
+              id="email"
+              name="email"
               required
-              placeholder="Enter your username"
+              placeholder="Enter your email"
             />
           </div>
 
@@ -40,7 +39,7 @@
               id="password"
               name="password"
               required
-              placeholder="Enter your password"
+              placeholder="Password"
             />
           </div>
 
@@ -52,8 +51,7 @@
             <p>Don't have an account? <a href="signup">Sign up</a></p>
           </div>
         </form>
-      </section>
-    </section>
+      </div>
   </div>
 </section>
     {{>footer}}
