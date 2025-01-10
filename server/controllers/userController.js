@@ -73,25 +73,19 @@ const loginUser = async (req, res) => {
 
         // Generate JWT token
         const token = jwt.sign(
-            { id: user.id, firstname: user.firstName, lastname: user.lastName, email: user.email },
+            { id: user.id, email: user.email },
             process.env.SECRET_KEY,
             { expiresIn: '2d' }
         );
 
         res.status(200).json({ 
             message: 'Login successful', 
-            user: {
-                firstName: user.firstName,
-                lastName: user.lastName,
-                id: user.id, 
-                email: user.email
-            },
             // Send JWT token with result payload
-            token
+            token,
         });
 
     } catch(err) {
-        console.error('Could not find user: ', err);
+        console.error('Error during login', err);
         res.status(500).json({ message: 'Server Error' });
     }
 }
