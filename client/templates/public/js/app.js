@@ -62,11 +62,11 @@ function updateChart() {
 
   bloodSugarLevels.push(parseInt(bloodSugarInput));
   timeLabels.push(currentTime);
-
+  
   bloodSugarChart.update();
-
+  recordSugar(bloodSugarInput)
   showFoodRecommendations(parseInt(bloodSugarInput));
-
+  
   document.getElementById("bloodSugar").value = "";
 }
 
@@ -136,7 +136,7 @@ function updateNavLinks() {
   }
 }
 
-window.addEventListener("DOMContentLoaded", updateChart);
+// window.addEventListener("DOMContentLoaded", updateChart);
 
 function signOut() {
   localStorage.removeItem("authtoken");
@@ -154,4 +154,36 @@ function simulateLogout() {
   localStorage.removeItem("authtoken");
 
   updateNavLinks();
+}
+
+// Post request for storing blood sugar
+async function recordSugar(sugar) {
+  const authToken = localStorage.getItem("authtoken");
+
+  try {
+    const response = await fetch('/api/sugar', {
+      method: 'POST',
+      headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+      body: JSON.stringify({ sugar }),
+    });
+
+    const data = await response.json();
+
+    
+    if (await data) {
+      console.log(await data, '<<<< data')
+    }
+
+    if (response.ok) {
+      console.log('Sugar recorded')
+    } else {
+      console.log('Sugar unable to be recorded')
+    }
+
+  } catch (err) {
+    console.log(err, 'Error')
+  }
 }
