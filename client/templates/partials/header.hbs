@@ -2,7 +2,7 @@
   <header class="navbar">
     <div class="navbar-container">
       <a href="/" class="logo">
-        <img src="/images/vitalView.png" alt="logo" class="brand-logo" />
+        <img src="/images/FinalLogo.png" alt="logo" class="brand-logo" />
       </a>
 
       <!-- ******************************************Hamburger Menu -->
@@ -16,8 +16,14 @@
       <ul class="nav-links">
         <li><a href="/chart">Blood Tracker</a></li>
         <li><a href="/about">Resources</a></li>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/signup">Sign Up</a></li>
+        <li><a href="/login" id="loginLink">Login</a></li>
+        <li><a href="/signup" id="signupLink" class="btn-nav">Sign Up</a></li>
+        <li><button
+            href="#"
+            id="signoutLink"
+            style="display: none"
+            signOut()
+          >Sign Out</button></li>
       </ul>
     </div>
   </header>
