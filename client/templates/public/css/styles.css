@@ -53,27 +53,55 @@ h2 {
   display: flex;
   gap: 20px;
   z-index: 1000;
-  margin-right: 2rem;
-  margin-bottom: 0.5rem;
+  /* margin-right: 2rem;
+  margin-bottom: 0.5rem; */
 }
 
 .nav-links li {
   display: inline-block;
+  vertical-align: middle;
 }
 
-.nav-links a {
+.nav-links a,
+.nav-links .btn-nav {
   color: #fff;
   text-decoration: none;
-  padding: 10px;
+  padding: 10px 20px;
   font-size: 18px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links .btn-nav:hover {
   background-color: #f6f3f3;
   color: #4a90e2;
   border-radius: 5px;
 }
 
+.nav-links .btn-nav {
+  background-color: #4a90e2;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.nav-links .btn-nav:hover {
+  background-color: white;
+}
+/* #signupLink btn {
+  background-color: #f6f3f3;
+  color: #4a90e2;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+}
+#signupLink btn {
+  margin-right: 0.5rem;
+  margin-bottom: 2rem;
+  display: inline-block;
+} */
 /******************************************************************************** Hamburger Menu **************************************************************************/
 .hamburger {
   display: none;
@@ -204,21 +232,23 @@ canvas {
   max-width: 12000px;
   height: 100%;
   justify-content: center;
-  padding: 0 20px;
   box-sizing: border-box;
   gap: 20px;
 }
 .left-image {
   flex: 1;
   max-width: 100%;
+  padding-left: 15rem;
   display: flex;
-  justify-content: center;
+
+  /* justify-content: center; */
 }
 .left-image img {
   max-width: 800px;
-  height: 850px;
+  height: 650px;
   object-fit: cover;
-  border-radius: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .login-section {
@@ -228,20 +258,18 @@ canvas {
   justify-content: center;
   background-image: url(/client/templates/public/images/blueLogo.png);
   align-items: center;
-  padding: 0;
 }
 
 .login-form {
   width: 40rem;
   max-width: 400px;
-  padding-left: 0;
-  padding: 30px;
+  padding: 10px;
   background-color: #f5f5f5;
-  border-radius: 30px;
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   /* max-width: 800px; */
-  height: 850px;
-  padding-top: 12rem;
+  height: 650px;
+  padding-top: 8rem;
 }
 
 .login-form h2 {
@@ -320,31 +348,48 @@ canvas {
   justify-content: center;
   padding-top: 40px;
   padding-bottom: 40px;
+  margin-left: 10rem;
 }
 /***************************************************************************************** Sign-Up Page ************************************************************************************ */
 .signup-container {
   background-color: #f5f5f5;
-  padding: 120px;
   justify-content: center;
-  border-radius: 8px;
   box-shadow: 50 4px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 1200px;
-  text-align: center;
-  align-items: center;
-  margin: 0 auto;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  height: 90%;
+  margin-left: 25%;
+  background-color: #e4edf2;
+  margin-top: 20px;
+}
+.right-image {
+  flex: 1;
+  max-width: 100%;
+  display: flex;
+}
+.right-image img {
+  height: 750px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.signup-form {
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 750px;
+}
 .signup-form h2 {
   margin-bottom: 30px;
   font-weight: bold;
-  align-items: center;
-  justify-content: center;
-  align-items: center;
+  font-size: 28px;
   color: #070606;
+  text-align: center;
 }
 
 .input-group {
@@ -354,7 +399,7 @@ canvas {
 
 .input-group label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   font-weight: 600;
   color: #333;
 }
@@ -362,7 +407,7 @@ canvas {
 .input-group input,
 .input-group select {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   font-size: 16px;
   border: 2px solid #ddd;
   border-radius: 4px;
@@ -377,17 +422,6 @@ canvas {
   border-color: #b0cfde;
   box-shadow: 0 0 5px rgba(206, 227, 255, 0.925);
   outline: none;
-}
-
-.birthday-group {
-  display: flex;
-  gap: 10px;
-  justify-content: space-between;
-}
-
-.birthday-group select {
-  width: 32%;
-  font-size: 14px;
 }
 
 .btn {
@@ -411,6 +445,7 @@ canvas {
   font-size: 14px;
   color: #4f4e4e;
   margin-bottom: 1px;
+  text-align: center;
 }
 
 .signin-link a {
@@ -567,11 +602,11 @@ footer .copyright {
     margin-right: 20px;
   }
 }
-
+/*******************************************@mdia for login   */
 @media (max-width: 768px) {
   .login-container {
     flex-direction: column;
-    margin-left: 30px;
+    margin-left: 1px;
     justify-content: flex-start;
     align-items: center;
   }
@@ -581,9 +616,9 @@ footer .copyright {
   }
 
   .login-form {
-    width: 90%;
+    width: 60%;
     max-width: 350px;
-    padding: 20px;
+    padding: 10px;
     margin-top: 20px;
     height: auto;
   }
@@ -604,7 +639,7 @@ footer .copyright {
     font-size: 14px;
   }
 }
-
+/**********************************************************  @media login page */
 @media (max-width: 768px) {
   footer {
     flex-direction: column;
@@ -618,6 +653,78 @@ footer .copyright {
 
   footer .icon a {
     font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .signup-container {
+    flex-direction: column;
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  .right-image {
+    display: none;
+  }
+
+  .signup-form {
+    max-width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+  }
+
+  .signup-form h2 {
+    font-size: 24px;
+  }
+
+  .input-group input,
+  .input-group select {
+    font-size: 14px;
+  }
+
+  .btn {
+    font-size: 14px;
+  }
+
+  .signin-link a {
+    font-size: 14px;
+  }
+
+  .terms-info {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 430px) {
+  .signup-container {
+    margin-left: 0;
+    padding: 15px;
+  }
+
+  .signup-form {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .signup-form h2 {
+    font-size: 20px;
+  }
+
+  .input-group input,
+  .input-group select {
+    font-size: 12px;
+  }
+
+  .btn {
+    font-size: 12px;
+  }
+
+  .signin-link a {
+    font-size: 12px;
+  }
+
+  .terms-info {
+    font-size: 10px;
   }
 }
 

@@ -11,31 +11,29 @@
   </head>
   <body>
     {{>header}}
-    <main>
     <div class="signup-container">
         <form method="POST" class="signup-form" id="register-form">
           <h2>Create Account</h2>
-    
 
-          <!-- Email -->
+         
           <div class="input-group">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" required placeholder="Enter your email address">
           </div>
 
-          <!-- Password -->
+       
           <div class="input-group">
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required placeholder="Create a new password">
           </div>
 
-          <!-- First Name -->
+        
           <div class="input-group">
             <label for="first-name">First Name</label>
             <input type="text" id="first-name" name="first-name" required placeholder="Enter your first name">
           </div>
     
-          <!-- Last Name -->
+        
           <div class="input-group">
             <label for="last-name">Last Name</label>
             <input type="text" id="last-name" name="last-name" required placeholder="Enter your last name">
@@ -45,7 +43,7 @@
     <p>By clicking Sign Up, you agree to our <a href="#">Terms</a>, <a href="#">Privacy Policy</a> and <a href="#">Cookies Policy</a>. You may receive SMS Notifications from us and can opt out any time.</p>
   </div>
     
-          <!-- Submit Button -->
+      
           <div class="input-group">
             <button type="submit" class="btn">Sign Up</button>
           </div>
@@ -55,7 +53,11 @@
             <p>Already have an account? <a href="login">Sign In</a></p>
           </div>
         </form>
-</main>
+      <div class="right-image">
+          <img src="/images/family.avif" alt="Diabetes Awareness" />
+        </div>
+    </div>
+
     {{>footer}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/signup.js"></script>
