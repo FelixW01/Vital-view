@@ -14,9 +14,9 @@ const app = express();
 const PORT = process.env.PORT || 3000
 
 // Make sure user table is present
+userSchema();
 savedFoodSchema();
 bloodSugarSchema();
-userSchema();
 
 const publicDirectoryPath = path.join(__dirname, '../client/templates/public')
 const viewsPath = path.join(__dirname, '../client/templates/views')

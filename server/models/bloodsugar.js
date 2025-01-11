@@ -3,8 +3,12 @@ const pool = require('../db/config');
 const bloodSugarSchema = async () => {
     const query = `CREATE TABLE IF NOT EXISTS bloodsugar (
         sugarId INT AUTO_INCREMENT PRIMARY KEY,
+        userId CHAR(36) NOT NULL,
         measurement_date DATE,
-        level DECIMAL (3,2)
+        level DECIMAL (5,2),
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        FOREIGN KEY (userId) REFERENCES users(userId)
 );`
         try {
         // create the table

@@ -15,13 +15,14 @@ router.get("/about", (req, res) => {
 
 // Chart/app page
 router.get("/chart", async (req, res) => {
+  const query = req.query.q || 'beef'; // Default to 'beef' if no query provided
+  console.log('Query parameter:', query); // Log the query parameter
   try {
-      const responseData = await callApi();
-      console.log(responseData); // Log data to check for blanks
-      res.render("chart", { food: responseData });
+    const responseData = await callApi(query); // Pass the query to the API call
+    res.render("chart", { food: responseData });
   } catch (error) {
-      console.error('Error in /chart route:', error);
-      res.status(500).send("An error occurred while fetching data.");
+    console.error('Error in /chart route:', error);
+    res.status(500).send("An error occurred while fetching data.");
   }
 });
 
