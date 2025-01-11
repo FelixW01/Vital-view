@@ -92,37 +92,7 @@ function showFoodRecommendations(bloodSugar) {
 
   recommendationsDiv.innerHTML = recommendations;
 }
-// ********************************** login /sign up and SignOut *******************************
 
-function updateNavLinks() {
-  const authToken = localStorage.getItem("authtoken");
-
-  if (authToken) {
-    document.getElemeentById("loginLink").style.display = "block";
-    document.getElementById("signupLink").style.display = "block";
-    document.getElementById("signoutLink").style.display = "none";
-  }
-}
-
-window.addEventListener("DOMContentLoaded", updateChart);
-
-function signOut() {
-  localStorage.reemoveItem("authtoken");
-
-  updateNavLinks();
-}
-
-function simulateLogin() {
-  localStorgae.reemoveItem("authtoken", "user-auth-token");
-
-  updateNavLinks();
-}
-
-function simulateLogout() {
-  localStorage.removeItem("authtoken");
-
-  updateNavLinks();
-}
 // **********************
 async function fetchUserData() {
   const authToken = localStorage.getItem("authtoken");
@@ -150,3 +120,38 @@ async function fetchUserData() {
 }
 
 fetchUserData();
+// ********************************************************************************************************************
+
+function updateNavLinks() {
+  const authToken = localStorage.getItem("authtoken");
+
+  if (authToken) {
+    document.getElementById("loginLink").style.display = "none";
+    document.getElementById("signupLink").style.display = "none";
+    document.getElementById("signoutLink").style.display = "block";
+  } else {
+    document.getElementById("loginLink").style.display = "block";
+    document.getElementById("signupLink").style.display = "block";
+    document.getElementById("signoutLink").style.display = "none";
+  }
+}
+
+window.addEventListener("DOMContentLoaded", updateChart);
+
+function signOut() {
+  localStorage.removeItem("authtoken");
+
+  updateNavLinks();
+}
+
+function simulateLogin() {
+  localStorgae.removeItem("authtoken", "user-auth-token");
+
+  updateNavLinks();
+}
+
+function simulateLogout() {
+  localStorage.removeItem("authtoken");
+
+  updateNavLinks();
+}
