@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 
 const registerUser = async (req, res) => {
     const { email, password, firstName, lastName } = req.body
-    console.log(email, password, firstName, lastName, '<<<<<<<< REQ.BODY')
+
     if (!email || !password || !firstName || !lastName) {
         return res.status(400).json({ message: 'All fields are required' });
     }
@@ -70,7 +70,7 @@ const loginUser = async (req, res) => {
 
         // Generate JWT token
         const token = jwt.sign(
-            { id: user.userId, email: user.email },
+            { id: user.userId, firstName: user.firstName, lastName: user.lastName, email: user.email },
             process.env.SECRET_KEY,
             { expiresIn: '2d' }
         );
