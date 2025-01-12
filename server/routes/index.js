@@ -16,7 +16,7 @@ router.get("/about", (req, res) => {
 // Chart/app page
 router.get("/chart", async (req, res) => {
   const query = req.query.q || "beef"; // Default to 'beef' if no query provided
-  console.log("Query parameter:", query); // Log the query parameter
+  // console.log("Query parameter:", query); // Log the query parameter
   try {
     const responseData = await callApi(query); // Pass the query to the API call
     res.render("chart", { food: responseData });

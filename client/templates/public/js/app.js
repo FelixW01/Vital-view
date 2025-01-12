@@ -62,11 +62,12 @@ function updateChart() {
 
   bloodSugarLevels.push(parseInt(bloodSugarInput));
   timeLabels.push(currentTime);
-
+  
   bloodSugarChart.update();
-
+  recordSugar(bloodSugarInput)
+  fetchSugarData();
   showFoodRecommendations(parseInt(bloodSugarInput));
-
+  
   document.getElementById("bloodSugar").value = "";
 }
 
@@ -117,6 +118,7 @@ async function fetchUserData() {
       console.log(err, "Error");
     }
   }
+  fetchSugarData();
 }
 
 fetchUserData();
@@ -136,7 +138,7 @@ function updateNavLinks() {
   }
 }
 
-window.addEventListener("DOMContentLoaded", updateChart);
+// window.addEventListener("DOMContentLoaded", updateChart);
 
 function signOut() {
   localStorage.removeItem("authtoken");
@@ -154,4 +156,61 @@ function simulateLogout() {
   localStorage.removeItem("authtoken");
 
   updateNavLinks();
+}
+
+// Post request for storing blood sugar
+async function recordSugar(sugar) {
+  const authToken = localStorage.getItem("authtoken");
+
+  try {
+    const response = await fetch('/api/sugar', {
+      method: 'POST',
+      headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+      body: JSON.stringify({ sugar }),
+    });
+
+    const data = await response.json();
+
+    
+    if (await data) {
+      console.log(await data, '<<<< data')
+    }
+
+    if (response.ok) {
+      console.log('Sugar recorded')
+    } else {
+      console.log('Sugar unable to be recorded')
+    }
+
+  } catch (err) {
+    console.log(err, 'Error')
+  }
+}
+
+async function fetchSugarData() {
+  const authToken = localStorage.getItem("authtoken");
+
+  if (authToken) {
+    try {
+      const response = await fetch("/api/getSugar", {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data, "<<<< data");
+      } else {
+        console.log("sugar data could not be fetched");
+      }
+    } catch (err) {
+      console.log(err, "Error");
+    }
+  }
 }
