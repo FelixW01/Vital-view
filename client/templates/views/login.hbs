@@ -11,17 +11,14 @@
   </head>
   <body>
     {{>header}}
-    <section>
-    <div class="Form">
-      <section class="login-container">
-        <div class="left-image">
+ <div class="Form">
+          <div class="left-image">
           <img src="/images/loginPic.avif" alt="Diabetes Awareness" />
         </div>
-
+      <section class="login-container">
     <section class="login-section">
         <form method="POST" class="login-form" id="loginForm">
           <h2>Login</h2>
-
           <div class="input-group">
             <label for="email">Email</label>
             <input
@@ -52,12 +49,12 @@
             <p>Don't have an account? <a href="signup">Sign up</a></p>
           </div>
         </form>
-      </section>
-    </section>
+      </div>
   </div>
 </section>
     {{>footer}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/js/login.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>
