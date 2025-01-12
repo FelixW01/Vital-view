@@ -7,7 +7,7 @@ const storeSugar = async (req, res) => {
     if (!user) {
         return res.status(401).json({ message: 'User not authenticated' });
     }
-    
+
     try {
         const query = `
             INSERT INTO bloodsugar (userId, level)
@@ -21,4 +21,30 @@ const storeSugar = async (req, res) => {
     }
 };
 
-module.exports = { storeSugar };
+const getSugar = async (req, res) => {
+    try {
+        const user = req.user;
+
+        const query = ` 
+        SELECT * 
+        FROM bloodsugar
+        INNER JOIN users
+        ON bloodsugar.userId = users.userId
+        WHERE bloodsugar.userId = ?;
+        `
+        const [results] = await pool.query(query, [user.id]);
+        
+        if (results.length === 0) {
+            return res.status(404).json({ message: 'No blood sugar records found for this user' });
+        }
+        const { email, password, userId, sugarId, firstName, lastName, ...safeSugarData } = results[0];
+        res.status(200).json({ bloodSugarData: safeSugarData });
+
+    } catch (err) {
+        console.log('Error fetching user', err);
+        res.status(500).json({ error: 'Server error' });
+    }
+}
+
+
+module.exports = { storeSugar, getSugar };

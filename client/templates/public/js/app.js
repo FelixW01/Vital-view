@@ -65,6 +65,7 @@ function updateChart() {
   
   bloodSugarChart.update();
   recordSugar(bloodSugarInput)
+  fetchSugarData();
   showFoodRecommendations(parseInt(bloodSugarInput));
   
   document.getElementById("bloodSugar").value = "";
@@ -117,6 +118,7 @@ async function fetchUserData() {
       console.log(err, "Error");
     }
   }
+  fetchSugarData();
 }
 
 fetchUserData();
@@ -185,5 +187,30 @@ async function recordSugar(sugar) {
 
   } catch (err) {
     console.log(err, 'Error')
+  }
+}
+
+async function fetchSugarData() {
+  const authToken = localStorage.getItem("authtoken");
+
+  if (authToken) {
+    try {
+      const response = await fetch("/api/getSugar", {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data, "<<<< data");
+      } else {
+        console.log("sugar data could not be fetched");
+      }
+    } catch (err) {
+      console.log(err, "Error");
+    }
   }
 }

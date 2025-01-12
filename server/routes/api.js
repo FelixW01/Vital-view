@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { registerUser, getUsers, loginUser, getMe } = require('../controllers/userController');
-const { storeSugar } = require('../controllers/sugarController');
+const { storeSugar, getSugar } = require('../controllers/sugarController');
 // const { storeRecipe, getRecipe } = require('../controllers/recipeController');
 const auth = require('../middleware/auth');
 
@@ -13,7 +13,7 @@ router.get('/me', auth, getMe);
 
 // API routes for sugar
 router.post('/sugar', auth, storeSugar);
-// router.get('/getSugar', getSugar);
+router.get('/getSugar', auth, getSugar);
 
 // API for recipes
 // router.post('/recipe', storeRecipe);
