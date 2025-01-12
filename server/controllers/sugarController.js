@@ -3,11 +3,11 @@ const pool = require('../db/config.js');
 const storeSugar = async (req, res) => {
     const { sugar } = req.body;
     const { user } = req;
-    
+
     if (!user) {
         return res.status(401).json({ message: 'User not authenticated' });
     }
-
+    
     try {
         const query = `
             INSERT INTO bloodsugar (userId, level)
@@ -37,8 +37,12 @@ const getSugar = async (req, res) => {
         if (results.length === 0) {
             return res.status(404).json({ message: 'No blood sugar records found for this user' });
         }
-        const { email, password, userId, sugarId, firstName, lastName, ...safeSugarData } = results[0];
-        res.status(200).json({ bloodSugarData: safeSugarData });
+        const safeResults = results.map(row => {
+            const { email, password, userId, sugarId, firstName, lastName, ...safeSugarData } = row;
+            return safeSugarData;
+        });
+
+        res.status(200).json({ bloodSugarData: safeResults });
 
     } catch (err) {
         console.log('Error fetching user', err);
