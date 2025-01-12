@@ -3,7 +3,7 @@ const pool = require('../db/config.js');
 const storeSugar = async (req, res) => {
     const { sugar } = req.body;
     const { user } = req;
-
+    
     if (!user) {
         return res.status(401).json({ message: 'User not authenticated' });
     }
