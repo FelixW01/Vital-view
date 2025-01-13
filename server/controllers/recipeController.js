@@ -39,6 +39,7 @@ const getRecipe = async (req, res) => {
         }
         const safeResults = results.map(row => {
             const { email, password, userId, recipeId, firstName, lastName, ...safeRecipeData } = row;
+            console.log(safeRecipeData);
             return safeRecipeData;
         });
 

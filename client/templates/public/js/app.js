@@ -121,8 +121,34 @@ async function fetchUserData() {
   }
   fetchSugarData();
 }
-
 fetchUserData();
+
+const getSavedRecipes = async  () => {
+    const authToken = localStorage.getItem("authtoken");
+
+    if (authToken) {
+      try {
+        const response = await fetch("/api/getRecipe", {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${authToken}`,
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data, "<<<< data");
+        } else {
+          console.log("Could not get recipes.");
+        }
+      } catch (err) {
+        console.log(err, "Error");
+      }
+    }
+}
+// Need to find a way to call this method from index.js - maybe move it to it's own file
+module.exports = { getSavedRecipes };
 // ********************************************************************************************************************
 
 function updateNavLinks() {
@@ -219,9 +245,11 @@ async function fetchSugarData() {
 
 
 const addRecipeBtns = document.querySelectorAll('.saveFood');
-// Add event listener to buttons and trigger saveRecipe
-addRecipeBtns.addEventListener('click', async function(event) {
-  const foodData = {
+
+// Loop through all buttons and attach event listener
+addRecipeBtns.forEach((btn) => {
+  btn.addEventListener('click', async function (event) {
+    const foodData = {
       label: event.target.dataset.label,
       source: event.target.dataset.source,
       image: event.target.dataset.image,
@@ -230,13 +258,15 @@ addRecipeBtns.addEventListener('click', async function(event) {
       sugar: parseFloat(event.target.dataset.sugar),
     };
     try {
-    await saveRecipe(foodData); 
-    console.log(foodData, '<<<< foodData')
-    console.log('Recipe added successfully!');
+      await saveRecipe(foodData);
+      console.log(foodData, '<<<< foodData');
+      console.log('Recipe added successfully!');
     } catch (err) {
       console.log('Error adding recipe:', err);
-    } 
-})
+    }
+  });
+});
+
 
 // Function for saving recipes
 async function saveRecipe(foodData) {

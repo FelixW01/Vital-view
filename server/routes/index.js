@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const apiRoutes = require("./api");
 const callApi = require("../../client/templates/public/js/foodData");
+//const getSavedRecipes = require("../../client/templates/public/js/app");
 
 // Home page
 router.get("/", (req, res) => {
@@ -25,6 +26,19 @@ router.get("/chart", async (req, res) => {
     res.status(500).send("An error occurred while fetching data.");
   }
 });
+
+// Saved Recipes Page
+
+router.get("/recipeList", async (req, res) => {
+  res.render("recipeList");
+
+  try {
+    const responseList = await getSavedRecipes();
+    console.log(responseList);
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 //login page
 router.get("/login", (req, res) => {
