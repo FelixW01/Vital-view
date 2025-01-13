@@ -19,9 +19,7 @@ loginForm.addEventListener('submit', async e => {
         if (await data){
             console.log(await data, '<<<< data')
             console.log(data.token)
-            if (!data === undefined) {
                 localStorage.setItem('authtoken', data.token)
-            }
         }
 
         if(response.ok){
