@@ -8,10 +8,11 @@ const APP_ID = process.env.APP_ID;
 const callApi = async (query) => {
     try {
       const url = `https://api.edamam.com/api/recipes/v2?type=public&q=${query}&app_id=${APP_ID}&app_key=${API_KEY}`;
-      console.log('API URL:', url); // Log the URL for debugging
+      // console.log('API URL:', url); // Log the URL for debugging
       const response = await axios.get(url);
   
       if (response.data.hits && response.data.hits.length > 0) {
+        // console.log(response.data.hits[0], '<<<< hits here')
         return response.data.hits.map(hit => ({
           label: hit.recipe.label,
           source: hit.recipe.source,

@@ -64,7 +64,8 @@ function updateChart() {
   timeLabels.push(currentTime);
 
   bloodSugarChart.update();
-
+  recordSugar(bloodSugarInput);
+  fetchSugarData();
   showFoodRecommendations(parseInt(bloodSugarInput));
 
   document.getElementById("bloodSugar").value = "";
@@ -94,6 +95,7 @@ function updateChart() {
 // }
 
 // **********************
+// Grab data of current user
 async function fetchUserData() {
   const authToken = localStorage.getItem("authtoken");
 
@@ -117,6 +119,7 @@ async function fetchUserData() {
       console.log(err, "Error");
     }
   }
+  fetchSugarData();
 }
 
 fetchUserData();
@@ -140,7 +143,7 @@ fetchUserData();
 //   }
 // }
 
-// window.addEventListener("DOMContentLoaded", updateNavLinks);
+// window.addEventListener("DOMContentLoaded", updateChart);
 
 // function signOut() {
 //   localStorage.removeItem("authtoken");
@@ -157,4 +160,110 @@ fetchUserData();
 // function simulateLogout() {
 //   localStorage.removeItem("authtoken");
 
-//   updateNavLinks();
+updateNavLinks();
+
+// Store sugar to current user
+async function recordSugar(sugar) {
+  const authToken = localStorage.getItem("authtoken");
+
+  try {
+    const response = await fetch("/api/sugar", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${authToken}`,
+      },
+      body: JSON.stringify({ sugar }),
+    });
+
+    const data = await response.json();
+
+    if (await data) {
+      console.log(await data, "<<<< data");
+    }
+
+    if (response.ok) {
+      console.log("Sugar recorded");
+    } else {
+      console.log("Sugar unable to be recorded");
+    }
+  } catch (err) {
+    console.log(err, "Error");
+  }
+}
+
+// Fetching sugar data based on user
+async function fetchSugarData() {
+  const authToken = localStorage.getItem("authtoken");
+
+  if (authToken) {
+    try {
+      const response = await fetch("/api/getSugar", {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data, "<<<< data");
+      } else {
+        console.log("sugar data could not be fetched");
+      }
+    } catch (err) {
+      console.log(err, "Error");
+    }
+  }
+}
+
+const addRecipeBtns = document.querySelectorAll(".saveFood");
+// Add event listener to buttons and trigger saveRecipe
+addRecipeBtns.addEventListener("click", async function (event) {
+  const foodData = {
+    label: event.target.dataset.label,
+    source: event.target.dataset.source,
+    image: event.target.dataset.image,
+    url: event.target.dataset.url,
+    calories: parseInt(event.target.dataset.calories),
+    sugar: parseFloat(event.target.dataset.sugar),
+  };
+  try {
+    await saveRecipe(foodData);
+    console.log(foodData, "<<<< foodData");
+    console.log("Recipe added successfully!");
+  } catch (err) {
+    console.log("Error adding recipe:", err);
+  }
+});
+
+// Function for saving recipes
+async function saveRecipe(foodData) {
+  const authToken = localStorage.getItem("authtoken");
+
+  try {
+    const response = await fetch("/api/recipe", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${authToken}`,
+      },
+      body: JSON.stringify(foodData),
+    });
+
+    const data = await response.json();
+
+    if (await data) {
+      console.log(await data, "<<<< data");
+    }
+
+    if (response.ok) {
+      console.log("Recipe recorded");
+    } else {
+      console.log("Recipe unable to be recorded");
+    }
+  } catch (err) {
+    console.log(err, "Error");
+  }
+}

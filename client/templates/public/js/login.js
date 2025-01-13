@@ -19,7 +19,11 @@ loginForm.addEventListener("submit", async (e) => {
       body: JSON.stringify({ email, password }),
     });
 
-    const data = await response.json();
+    if (await data) {
+      console.log(await data, "<<<< data");
+      console.log(data.token);
+      localStorage.setItem("authtoken", data.token);
+    }
 
     if (await data) {
       console.log(await data, "<<<< data");

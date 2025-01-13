@@ -57,7 +57,7 @@
   <div id="foodRecommendations">
   {{#if food.length}}
     {{#each food}}
-      {{#if this.label}} 
+      {{#if this.label}}
       <div class="food-item">
         <img src="{{image}}" alt="{{label}}">
         <div class="food-info">
@@ -69,6 +69,9 @@
         <div class="nutrition-info">
           <p><a href="{{url}}" target="_blank" class"view-recipe-btn">Recipe</a></p>
         </div>
+        <button class="saveFood" data-id="{{this.id}}" data-label="{{label}}" data-source="{{source}}" data-image="{{image}}" data-url="{{url}}" data-calories="{{calories}}" data-sugar="{{sugar}}">
+          Save Selection
+        </button>
       </div>
     </div>
     </div>
