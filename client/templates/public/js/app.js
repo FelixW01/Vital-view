@@ -160,7 +160,7 @@ fetchUserData();
 // function simulateLogout() {
 //   localStorage.removeItem("authtoken");
 
-updateNavLinks();
+// updateNavLinks();
 
 // Store sugar to current user
 async function recordSugar(sugar) {
@@ -220,14 +220,15 @@ async function fetchSugarData() {
 
 const addRecipeBtns = document.querySelectorAll(".saveFood");
 // Add event listener to buttons and trigger saveRecipe
-addRecipeBtns.addEventListener("click", async function (event) {
-  const foodData = {
-    label: event.target.dataset.label,
-    source: event.target.dataset.source,
-    image: event.target.dataset.image,
-    url: event.target.dataset.url,
-    calories: parseInt(event.target.dataset.calories),
-    sugar: parseFloat(event.target.dataset.sugar),
+addRecipeBtns.forEach((button) => {
+  button.addEventListener("click", async function (event) {
+    const foodData = {
+      label: event.target.dataset.label,
+      source: event.target.dataset.source,
+      image: event.target.dataset.image,
+      url: event.target.dataset.url,
+      calories: parseInt(event.target.dataset.calories),
+      sugar: parseFloat(event.target.dataset.sugar),
   };
   try {
     await saveRecipe(foodData);
@@ -236,6 +237,7 @@ addRecipeBtns.addEventListener("click", async function (event) {
   } catch (err) {
     console.log("Error adding recipe:", err);
   }
+ });
 });
 
 // Function for saving recipes
