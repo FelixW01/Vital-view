@@ -124,11 +124,6 @@ async function fetchUserData() {
 
 fetchUserData();
 // ********************************************************************************************************************
-// function signOut() {
-//   localStorage.removeItem("authtoken");
-//   updateNavLinks();
-// }
-
 function updateNavLinks() {
   const authToken = localStorage.getItem("authtoken");
 
@@ -142,8 +137,10 @@ function updateNavLinks() {
     document.getElementById("signoutLink").style.display = "none";
   }
 }
-updateNavLinks();
-// window.addEventListener("DOMContentLoaded", updateChart);
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateNavLinks();
+});
 
 function signOut() {
   localStorage.removeItem("authtoken");
