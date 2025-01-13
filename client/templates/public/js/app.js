@@ -8,6 +8,7 @@ let bloodSugarLevels = [];
 let timeLabels = [];
 let lastTimestamp = 0;
 
+document.addEventListener("DOMContentLoaded", () => {
 const ctx = document.getElementById("bloodSugarChart").getContext("2d");
 const bloodSugarChart = new Chart(ctx, {
   type: "line",
@@ -42,6 +43,7 @@ const bloodSugarChart = new Chart(ctx, {
       },
     },
   },
+});
 });
 
 function updateChart() {
@@ -124,11 +126,6 @@ async function fetchUserData() {
 
 fetchUserData();
 // ********************************************************************************************************************
-// function signOut() {
-//   localStorage.removeItem("authtoken");
-//   updateNavLinks();
-// }
-
 function updateNavLinks() {
   const authToken = localStorage.getItem("authtoken");
 
@@ -142,8 +139,10 @@ function updateNavLinks() {
     document.getElementById("signoutLink").style.display = "none";
   }
 }
-updateNavLinks();
-// window.addEventListener("DOMContentLoaded", updateChart);
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateNavLinks();
+}); 
 
 function signOut() {
   localStorage.removeItem("authtoken");
@@ -209,14 +208,15 @@ async function fetchSugarData() {
 
 const addRecipeBtns = document.querySelectorAll(".saveFood");
 // Add event listener to buttons and trigger saveRecipe
-addRecipeBtns.addEventListener("click", async function (event) {
-  const foodData = {
-    label: event.target.dataset.label,
-    source: event.target.dataset.source,
-    image: event.target.dataset.image,
-    url: event.target.dataset.url,
-    calories: parseInt(event.target.dataset.calories),
-    sugar: parseFloat(event.target.dataset.sugar),
+addRecipeBtns.forEach((button) => {
+  button.addEventListener("click", async function (event) {
+    const foodData = {
+      label: event.target.dataset.label,
+      source: event.target.dataset.source,
+      image: event.target.dataset.image,
+      url: event.target.dataset.url,
+      calories: parseInt(event.target.dataset.calories),
+      sugar: parseFloat(event.target.dataset.sugar),
   };
   try {
     await saveRecipe(foodData);
@@ -225,6 +225,7 @@ addRecipeBtns.addEventListener("click", async function (event) {
   } catch (err) {
     console.log("Error adding recipe:", err);
   }
+ });
 });
 
 // Function for saving recipes

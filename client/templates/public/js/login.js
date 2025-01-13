@@ -24,6 +24,7 @@ loginForm.addEventListener("submit", async (e) => {
 
     if (response.ok) {
       console.log("Login successful");
+      window.location.href = "/";
     } else {
       console.log("Login failed");
     }
