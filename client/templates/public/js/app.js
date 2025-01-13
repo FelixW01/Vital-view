@@ -4,46 +4,47 @@ function toggleMenu() {
   navLinks.classList.toggle("active");
 }
 // *********************************************  Chart  ************************
+let bloodSugarChart;
 let bloodSugarLevels = [];
 let timeLabels = [];
 let lastTimestamp = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
-  const ctx = document.getElementById("bloodSugarChart").getContext("2d");
-  const bloodSugarChart = new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: timeLabels,
-      datasets: [
-        {
-          label: "Blood Sugar Level (mg/dL)",
-          data: bloodSugarLevels,
-          borderColor: "#003B5C",
-          backgroundColor: "#D9534F",
-          fill: true,
+const ctx = document.getElementById("bloodSugarChart").getContext("2d");
+bloodSugarChart = new Chart(ctx, {
+  type: "line",
+  data: {
+    labels: timeLabels,
+    datasets: [
+      {
+        label: "Blood Sugar Level (mg/dL)",
+        data: bloodSugarLevels,
+        borderColor: "#003B5C",
+        backgroundColor: "#D9534F",
+        fill: true,
+      },
+    ],
+  },
+  options: {
+    responsive: true,
+    scales: {
+      x: {
+        type: "linear",
+        position: "bottom",
+        title: {
+          display: true,
+          text: "Time (s)",
         },
-      ],
-    },
-    options: {
-      responsive: true,
-      scales: {
-        x: {
-          type: "linear",
-          position: "bottom",
-          title: {
-            display: true,
-            text: "Time (s)",
-          },
-        },
-        y: {
-          title: {
-            display: true,
-            text: "Blood Sugar Level (mg/dL)",
-          },
+      },
+      y: {
+        title: {
+          display: true,
+          text: "Blood Sugar Level (mg/dL)",
         },
       },
     },
-  });
+  },
+});
 });
 
 function updateChart() {
@@ -68,32 +69,9 @@ function updateChart() {
   bloodSugarChart.update();
   recordSugar(bloodSugarInput);
   fetchSugarData();
-  showFoodRecommendations(parseInt(bloodSugarInput));
 
   document.getElementById("bloodSugar").value = "";
 }
-// function showFoodRecommendations(bloodSugar) {
-//   const recommendationsDiv = document.getElementById("foodRecommendations");
-//   recommendationsDiv.innerHTML = "";
-
-//   let recommendations = "";
-
-//   if (bloodSugar < 70) {
-//     recommendations =
-//       "Your blood sugar is low. Try eating a small snack with 15g of carbohydrates (ex: a glass of juice, a piece of fruit).";
-//   } else if (bloodSugar >= 70 && bloodSugar <= 130) {
-//     recommendations =
-//       "Your blood sugar is within the normal range. Consider eating balanced meals with whole grains, vegetables, and lean proteins.";
-//   } else if (bloodSugar > 130 && bloodSugar <= 180) {
-//     recommendations =
-//       "Your blood sugar is higher than normal. Consider eating more fiber-rich foods like non-starchy vegetables, whole grains, and lean proteins.";
-//   } else {
-//     recommendations =
-//       "Your blood sugar is high. Try to reduce high-carb foods and focus on lean protein, healthy fats, and non-starchy vegetables.";
-//   }
-
-//   recommendationsDiv.innerHTML = recommendations;
-// }
 
 // **********************
 // Grab data of current user
