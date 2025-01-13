@@ -145,22 +145,11 @@ function updateNavLinks() {
 updateNavLinks();
 // window.addEventListener("DOMContentLoaded", updateChart);
 
-// function signOut() {
-//   localStorage.removeItem("authtoken");
+function signOut() {
+  localStorage.removeItem("authtoken");
 
-//   updateNavLinks();
-// }
-
-// function simulateLogin() {
-//   localStorgae.removeItem("authtoken", "user-auth-token");
-
-//   updateNavLinks();
-// }
-
-// function simulateLogout() {
-//   localStorage.removeItem("authtoken");
-
-updateNavLinks();
+  updateNavLinks();
+}
 
 // Store sugar to current user
 async function recordSugar(sugar) {
