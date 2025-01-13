@@ -1159,7 +1159,7 @@ footer .copyright {
   .input-group input,
   .input-group select {
     font-size: 18px;
-    /padding: 14px;
+    padding: 14px;
   }
 
   .btn {
