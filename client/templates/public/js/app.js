@@ -142,7 +142,11 @@ function updateNavLinks() {
     document.getElementById("signoutLink").style.display = "none";
   }
 }
-updateNavLinks();
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateNavLinks();
+}); 
+
 // window.addEventListener("DOMContentLoaded", updateChart);
 
 function signOut() {
@@ -256,3 +260,4 @@ async function saveRecipe(foodData) {
     console.log(err, "Error");
   }
 }
+alert('hi')
