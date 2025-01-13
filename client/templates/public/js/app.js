@@ -9,41 +9,41 @@ let timeLabels = [];
 let lastTimestamp = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
-const ctx = document.getElementById("bloodSugarChart").getContext("2d");
-const bloodSugarChart = new Chart(ctx, {
-  type: "line",
-  data: {
-    labels: timeLabels,
-    datasets: [
-      {
-        label: "Blood Sugar Level (mg/dL)",
-        data: bloodSugarLevels,
-        borderColor: "#003B5C",
-        backgroundColor: "#D9534F",
-        fill: true,
-      },
-    ],
-  },
-  options: {
-    responsive: true,
-    scales: {
-      x: {
-        type: "linear",
-        position: "bottom",
-        title: {
-          display: true,
-          text: "Time (s)",
+  const ctx = document.getElementById("bloodSugarChart").getContext("2d");
+  const bloodSugarChart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: timeLabels,
+      datasets: [
+        {
+          label: "Blood Sugar Level (mg/dL)",
+          data: bloodSugarLevels,
+          borderColor: "#003B5C",
+          backgroundColor: "#D9534F",
+          fill: true,
         },
-      },
-      y: {
-        title: {
-          display: true,
-          text: "Blood Sugar Level (mg/dL)",
+      ],
+    },
+    options: {
+      responsive: true,
+      scales: {
+        x: {
+          type: "linear",
+          position: "bottom",
+          title: {
+            display: true,
+            text: "Time (s)",
+          },
+        },
+        y: {
+          title: {
+            display: true,
+            text: "Blood Sugar Level (mg/dL)",
+          },
         },
       },
     },
-  },
-});
+  });
 });
 
 function updateChart() {
@@ -142,7 +142,7 @@ function updateNavLinks() {
 
 document.addEventListener("DOMContentLoaded", () => {
   updateNavLinks();
-}); 
+});
 
 function signOut() {
   localStorage.removeItem("authtoken");
@@ -217,15 +217,15 @@ addRecipeBtns.forEach((button) => {
       url: event.target.dataset.url,
       calories: parseInt(event.target.dataset.calories),
       sugar: parseFloat(event.target.dataset.sugar),
-  };
-  try {
-    await saveRecipe(foodData);
-    console.log(foodData, "<<<< foodData");
-    console.log("Recipe added successfully!");
-  } catch (err) {
-    console.log("Error adding recipe:", err);
-  }
- });
+    };
+    try {
+      await saveRecipe(foodData);
+      console.log(foodData, "<<<< foodData");
+      console.log("Recipe added successfully!");
+    } catch (err) {
+      console.log("Error adding recipe:", err);
+    }
+  });
 });
 
 // Function for saving recipes
