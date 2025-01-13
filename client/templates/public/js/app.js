@@ -70,28 +70,28 @@ function updateChart() {
   document.getElementById("bloodSugar").value = "";
 }
 
-function showFoodRecommendations(bloodSugar) {
-  const recommendationsDiv = document.getElementById("foodRecommendations");
-  recommendationsDiv.innerHTML = "";
+// function showFoodRecommendations(bloodSugar) {
+//   const recommendationsDiv = document.getElementById("foodRecommendations");
+//   recommendationsDiv.innerHTML = "";
 
-  let recommendations = "";
+//   let recommendations = "";
 
-  if (bloodSugar < 70) {
-    recommendations =
-      "Your blood sugar is low. Try eating a small snack with 15g of carbohydrates (ex: a glass of juice, a piece of fruit).";
-  } else if (bloodSugar >= 70 && bloodSugar <= 130) {
-    recommendations =
-      "Your blood sugar is within the normal range. Consider eating balanced meals with whole grains, vegetables, and lean proteins.";
-  } else if (bloodSugar > 130 && bloodSugar <= 180) {
-    recommendations =
-      "Your blood sugar is higher than normal. Consider eating more fiber-rich foods like non-starchy vegetables, whole grains, and lean proteins.";
-  } else {
-    recommendations =
-      "Your blood sugar is high. Try to reduce high-carb foods and focus on lean protein, healthy fats, and non-starchy vegetables.";
-  }
+//   if (bloodSugar < 70) {
+//     recommendations =
+//       "Your blood sugar is low. Try eating a small snack with 15g of carbohydrates (ex: a glass of juice, a piece of fruit).";
+//   } else if (bloodSugar >= 70 && bloodSugar <= 130) {
+//     recommendations =
+//       "Your blood sugar is within the normal range. Consider eating balanced meals with whole grains, vegetables, and lean proteins.";
+//   } else if (bloodSugar > 130 && bloodSugar <= 180) {
+//     recommendations =
+//       "Your blood sugar is higher than normal. Consider eating more fiber-rich foods like non-starchy vegetables, whole grains, and lean proteins.";
+//   } else {
+//     recommendations =
+//       "Your blood sugar is high. Try to reduce high-carb foods and focus on lean protein, healthy fats, and non-starchy vegetables.";
+//   }
 
-  recommendationsDiv.innerHTML = recommendations;
-}
+//   recommendationsDiv.innerHTML = recommendations;
+// }
 
 // **********************
 async function fetchUserData() {
@@ -121,37 +121,40 @@ async function fetchUserData() {
 
 fetchUserData();
 // ********************************************************************************************************************
+// function signOut() {
+//   localStorage.removeItem("authtoken");
+//   updateNavLinks();
+// }
 
-function updateNavLinks() {
-  const authToken = localStorage.getItem("authtoken");
+// function updateNavLinks() {
+//   const authToken = localStorage.getItem("authtoken");
 
-  if (authToken) {
-    document.getElementById("loginLink").style.display = "none";
-    document.getElementById("signupLink").style.display = "none";
-    document.getElementById("signoutLink").style.display = "block";
-  } else {
-    document.getElementById("loginLink").style.display = "block";
-    document.getElementById("signupLink").style.display = "block";
-    document.getElementById("signoutLink").style.display = "none";
-  }
-}
+//   if (authToken) {
+//     document.getElementById("loginLink").style.display = "none";
+//     document.getElementById("signupLink").style.display = "none";
+//     document.getElementById("signoutLink").style.display = "block";
+//   } else {
+//     document.getElementById("loginLink").style.display = "block";
+//     document.getElementById("signupLink").style.display = "block";
+//     document.getElementById("signoutLink").style.display = "none";
+//   }
+// }
 
-window.addEventListener("DOMContentLoaded", updateChart);
+// window.addEventListener("DOMContentLoaded", updateNavLinks);
 
-function signOut() {
-  localStorage.removeItem("authtoken");
+// function signOut() {
+//   localStorage.removeItem("authtoken");
 
-  updateNavLinks();
-}
+//   updateNavLinks();
+// }
 
-function simulateLogin() {
-  localStorgae.removeItem("authtoken", "user-auth-token");
+// function simulateLogin() {
+//   localStorgae.removeItem("authtoken", "user-auth-token");
 
-  updateNavLinks();
-}
+//   updateNavLinks();
+// }
 
-function simulateLogout() {
-  localStorage.removeItem("authtoken");
+// function simulateLogout() {
+//   localStorage.removeItem("authtoken");
 
-  updateNavLinks();
-}
+//   updateNavLinks();
