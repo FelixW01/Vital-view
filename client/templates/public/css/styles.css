@@ -126,8 +126,8 @@ h2 {
 .hero-container {
   position: relative;
   width: 100%;
-  height: 100vh;
-  overflow-x: hidden;
+  height: 35vh;
+  /* overflow-x: hidden; */
 }
 
 /* .slider {
@@ -1037,12 +1037,6 @@ footer .copyright {
 }
 
 /* ********************************** Home Page  ****************************/
-.hero-container {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow-x: hidden; 
-}
 
 /* Extra Small Screens (Mobile) */
 @media (max-width: 480px) {
@@ -1068,235 +1062,11 @@ footer .copyright {
     font-size: 14px;
   }
 }
-/* ********************************** Home Page  ****************************/
 
-/* .slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.index-navsection {
-  width: 100vw;
-  background-color: #e2e2e0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-.index-center_nav_section {
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
-  border-radius: 20px;
-  max-width: 100%;
-  padding: 30px;
-  background-color: #216d90;
-  color: #fff;
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-.index-center_nav_section p {
-  font-size: 28px;
-  margin-top: 10px;
-}
-
-button {
-  padding: 10px;
-  background-color: black;
-  color: #fff;
-  border: none;
-  border-radius: 15px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background-color: #e2e2e0;
-  color: black;
-}
-
-
-.index-middle-section {
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
-  border-radius: 10px;
-  width: 100%;
-  padding: 30px;
-  background-color: #216d90;
-  color: #fff;
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-
-
-.index-middle-2-section img {
-  width: 50%;
-  padding-top: 10px;
-}
-
-h5{
-  font-size: 25px;
-}
-
-.index-middle-2-section p {
-  font-size: 28px;
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-}
-
-.content-column {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.info-container {
-  display: flex;
-  justify-content: space-between;
-  width: 80%;
-  margin-left: 100px;
-}
-.info-box {
-  background-color: #216d90;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  padding: 20px;
-  text-align: center;
-  width: 32%;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
-  transition: transform 0.3s ease, box-shadow 0.3s ease; 
-}
-
-.info-box:hover {
-  transform: translateY(-2px); 
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); 
-}
-
-.info-box p {
-  font-size: 1.5rem;
-  padding-top: 15px;
-}
-
-.info-box2 {
-  background-color: #216d90;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 20px;
-  text-align: center;
-  width: 32%;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.info-box2:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-}
-
-.info-box2 p {
-  font-size: 1.5rem;
-  padding-top: 15px;
-}
-
-.info-box3 {
-  background-color: #216d90;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 20px;
-  text-align: center;
-  width: 32%;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.info-box3:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-}
-
-.info-box3 p {
-  font-size: 1.3rem;
-  padding-top: 15px;
-}
-
-.info-box3 img {
-  height: 60%;
-  width: 100%;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-h2 {
-  font-size: 3rem;
-  padding-bottom: 10px;
-}
-
-.bottom-section {
-  padding: 20px;
-  text-align: center;
-}
-
-.info-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-
-
-
-@media (max-width: 768px) {
-  .info-box,
-  .info-box2,
-  .info-box3 {
-    width: 45%; 
-  }
-}
-
-@media (max-width: 480px) {
-  .resource-box1,
-  .resource-box2,
-  .resource-box3,
-  .resource-box4 {
-    width: 90%; 
-  }
-}
-@media (max-width: 768px) {
-  .resource-box1,
-  .resource-box2,
-  .resource-box3,
-  .resource-box4 {
-    width: 45%; 
-  }
-}
-
-@media (max-width: 480px) {
-  .info-box,
-  .info-box2,
-  .info-box3 {
-    width: 90%; 
-  }
-} */
 
 /* ************************ Resource/About Page ***************************** */
 
-.donate-container {
+/* .donate-container {
   width: 300px;
   margin: 50px auto;
   padding: 20px;
@@ -1334,7 +1104,7 @@ input {
 
 button:hover {
   background-color: #218838;
-}
+} */
 
 .resource-box1,
 .resource-box2,
