@@ -62,37 +62,37 @@ function updateChart() {
 
   bloodSugarLevels.push(parseInt(bloodSugarInput));
   timeLabels.push(currentTime);
-  
+
   bloodSugarChart.update();
-  recordSugar(bloodSugarInput)
+  recordSugar(bloodSugarInput);
   fetchSugarData();
   showFoodRecommendations(parseInt(bloodSugarInput));
-  
+
   document.getElementById("bloodSugar").value = "";
 }
 
-function showFoodRecommendations(bloodSugar) {
-  const recommendationsDiv = document.getElementById("foodRecommendations");
-  recommendationsDiv.innerHTML = "";
+// function showFoodRecommendations(bloodSugar) {
+//   const recommendationsDiv = document.getElementById("foodRecommendations");
+//   recommendationsDiv.innerHTML = "";
 
-  let recommendations = "";
+//   let recommendations = "";
 
-  if (bloodSugar < 70) {
-    recommendations =
-      "Your blood sugar is low. Try eating a small snack with 15g of carbohydrates (ex: a glass of juice, a piece of fruit).";
-  } else if (bloodSugar >= 70 && bloodSugar <= 130) {
-    recommendations =
-      "Your blood sugar is within the normal range. Consider eating balanced meals with whole grains, vegetables, and lean proteins.";
-  } else if (bloodSugar > 130 && bloodSugar <= 180) {
-    recommendations =
-      "Your blood sugar is higher than normal. Consider eating more fiber-rich foods like non-starchy vegetables, whole grains, and lean proteins.";
-  } else {
-    recommendations =
-      "Your blood sugar is high. Try to reduce high-carb foods and focus on lean protein, healthy fats, and non-starchy vegetables.";
-  }
+//   if (bloodSugar < 70) {
+//     recommendations =
+//       "Your blood sugar is low. Try eating a small snack with 15g of carbohydrates (ex: a glass of juice, a piece of fruit).";
+//   } else if (bloodSugar >= 70 && bloodSugar <= 130) {
+//     recommendations =
+//       "Your blood sugar is within the normal range. Consider eating balanced meals with whole grains, vegetables, and lean proteins.";
+//   } else if (bloodSugar > 130 && bloodSugar <= 180) {
+//     recommendations =
+//       "Your blood sugar is higher than normal. Consider eating more fiber-rich foods like non-starchy vegetables, whole grains, and lean proteins.";
+//   } else {
+//     recommendations =
+//       "Your blood sugar is high. Try to reduce high-carb foods and focus on lean protein, healthy fats, and non-starchy vegetables.";
+//   }
 
-  recommendationsDiv.innerHTML = recommendations;
-}
+//   recommendationsDiv.innerHTML = recommendations;
+// }
 
 // **********************
 // Grab data of current user
@@ -124,70 +124,71 @@ async function fetchUserData() {
 
 fetchUserData();
 // ********************************************************************************************************************
+// function signOut() {
+//   localStorage.removeItem("authtoken");
+//   updateNavLinks();
+// }
 
-function updateNavLinks() {
-  const authToken = localStorage.getItem("authtoken");
+// function updateNavLinks() {
+//   const authToken = localStorage.getItem("authtoken");
 
-  if (authToken) {
-    document.getElementById("loginLink").style.display = "none";
-    document.getElementById("signupLink").style.display = "none";
-    document.getElementById("signoutLink").style.display = "block";
-  } else {
-    document.getElementById("loginLink").style.display = "block";
-    document.getElementById("signupLink").style.display = "block";
-    document.getElementById("signoutLink").style.display = "none";
-  }
-}
+//   if (authToken) {
+//     document.getElementById("loginLink").style.display = "none";
+//     document.getElementById("signupLink").style.display = "none";
+//     document.getElementById("signoutLink").style.display = "block";
+//   } else {
+//     document.getElementById("loginLink").style.display = "block";
+//     document.getElementById("signupLink").style.display = "block";
+//     document.getElementById("signoutLink").style.display = "none";
+//   }
+// }
 
 // window.addEventListener("DOMContentLoaded", updateChart);
 
-function signOut() {
-  localStorage.removeItem("authtoken");
+// function signOut() {
+//   localStorage.removeItem("authtoken");
 
-  updateNavLinks();
-}
+//   updateNavLinks();
+// }
 
-function simulateLogin() {
-  localStorgae.removeItem("authtoken", "user-auth-token");
+// function simulateLogin() {
+//   localStorgae.removeItem("authtoken", "user-auth-token");
 
-  updateNavLinks();
-}
+//   updateNavLinks();
+// }
 
-function simulateLogout() {
-  localStorage.removeItem("authtoken");
+// function simulateLogout() {
+//   localStorage.removeItem("authtoken");
 
-  updateNavLinks();
-}
+updateNavLinks();
 
 // Store sugar to current user
 async function recordSugar(sugar) {
   const authToken = localStorage.getItem("authtoken");
 
   try {
-    const response = await fetch('/api/sugar', {
-      method: 'POST',
+    const response = await fetch("/api/sugar", {
+      method: "POST",
       headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${authToken}`,
-        },
+        "Content-type": "application/json",
+        Authorization: `Bearer ${authToken}`,
+      },
       body: JSON.stringify({ sugar }),
     });
 
     const data = await response.json();
 
-    
     if (await data) {
-      console.log(await data, '<<<< data')
+      console.log(await data, "<<<< data");
     }
 
     if (response.ok) {
-      console.log('Sugar recorded')
+      console.log("Sugar recorded");
     } else {
-      console.log('Sugar unable to be recorded')
+      console.log("Sugar unable to be recorded");
     }
-
   } catch (err) {
-    console.log(err, 'Error')
+    console.log(err, "Error");
   }
 }
 
@@ -217,55 +218,52 @@ async function fetchSugarData() {
   }
 }
 
-
-const addRecipeBtns = document.querySelectorAll('.saveFood');
+const addRecipeBtns = document.querySelectorAll(".saveFood");
 // Add event listener to buttons and trigger saveRecipe
-addRecipeBtns.addEventListener('click', async function(event) {
+addRecipeBtns.addEventListener("click", async function (event) {
   const foodData = {
-      label: event.target.dataset.label,
-      source: event.target.dataset.source,
-      image: event.target.dataset.image,
-      url: event.target.dataset.url,
-      calories: parseInt(event.target.dataset.calories),
-      sugar: parseFloat(event.target.dataset.sugar),
-    };
-    try {
-    await saveRecipe(foodData); 
-    console.log(foodData, '<<<< foodData')
-    console.log('Recipe added successfully!');
-    } catch (err) {
-      console.log('Error adding recipe:', err);
-    } 
-})
+    label: event.target.dataset.label,
+    source: event.target.dataset.source,
+    image: event.target.dataset.image,
+    url: event.target.dataset.url,
+    calories: parseInt(event.target.dataset.calories),
+    sugar: parseFloat(event.target.dataset.sugar),
+  };
+  try {
+    await saveRecipe(foodData);
+    console.log(foodData, "<<<< foodData");
+    console.log("Recipe added successfully!");
+  } catch (err) {
+    console.log("Error adding recipe:", err);
+  }
+});
 
 // Function for saving recipes
 async function saveRecipe(foodData) {
   const authToken = localStorage.getItem("authtoken");
 
   try {
-    const response = await fetch('/api/recipe', {
-      method: 'POST',
+    const response = await fetch("/api/recipe", {
+      method: "POST",
       headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${authToken}`,
-        },
+        "Content-type": "application/json",
+        Authorization: `Bearer ${authToken}`,
+      },
       body: JSON.stringify(foodData),
     });
 
     const data = await response.json();
 
-    
     if (await data) {
-      console.log(await data, '<<<< data')
+      console.log(await data, "<<<< data");
     }
 
     if (response.ok) {
-      console.log('Recipe recorded')
+      console.log("Recipe recorded");
     } else {
-      console.log('Recipe unable to be recorded')
+      console.log("Recipe unable to be recorded");
     }
-
   } catch (err) {
-    console.log(err, 'Error')
+    console.log(err, "Error");
   }
 }

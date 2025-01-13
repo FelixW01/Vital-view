@@ -13,21 +13,15 @@
   <body>
     {{>header}}
 
-    <main>
-      <!-- Container for main content -->
-      <section class="container">
-        <h1>Diabetes Tracker and Food Recommendations</h1>
+
+      
+       
 
         <section class="info-section">
-          <h2>Diabetes in the USA</h2>
-          <p>
-            Over 34 million Americans have diabetes, and another 88 million have
-            prediabetes. Diabetes is a chronic condition that can affect many
-            aspects of your life.
-          </p>
+          <h2 class="topTitle">Diabetes Tracker</h2>
         </section>
 
-        <!-- Input Section for Blood Sugar Level -->
+<div class="input-chart-container">
         <section class="input-section">
           <label for="bloodSugar">Enter your blood sugar level (mg/dL): </label>
           <input 
@@ -37,51 +31,59 @@
             min="50"
             max="500"
           />
-          <button onclick="updateChart()">Add Data</button>
+          <button class="addDataBtn" onclick="updateChart()">Add Data</button>
         </section>
-
+<section class="container">
         <!-- Chart Section -->
         <section class="chart-section">
           <h2>Your Blood Sugar Levels</h2>
           <canvas id="bloodSugarChart"></canvas>
         </section>
-    </main>
-    <div id="foodRecommendations"></div>
-    <!-- Food Recommendations Section -->
-        <section class="recommendations">
-          <h2>Food Recommendations</h2>
+   </div>
 
-  <div id="foodRecommendations">
+<section>
+ <h2 class="topTitle">Food Recommendations</h2>
+    <div class="recommendations-container">
+  <section class="search-form-section">
   <form id="recipeSearchForm" action="/chart" method="GET">
     <label for="searchInput">Search for recipes:</label>
     <input type="text" id="searchInput" name="q" placeholder="Example: Chicken">
     <button type="submit">Search</button>
+    <div class="sticky-text">
+    <h3>Diabetes in the USA</h3>
+<p>Over 34 million Americans have diabetes, and another 88 million have prediabetes. Diabetes is a chronic condition that can affect many aspects of your life.</p><p>Good nutrition not only controls glucose (blood sugar) levels, but also improves cholesterol and blood pressure.</p></div>
   </form>
-
+ </section>
+  <div id="foodRecommendations">
   {{#if food.length}}
     {{#each food}}
       {{#if this.label}}
       <div class="food-item">
-        <h3>{{label}}</h3>
-        <p>Source: {{source}}</p>
         <img src="{{image}}" alt="{{label}}">
-        <p><a href="{{url}}" target="_blank">View Recipe</a></p>
+        <div class="food-info">
+          <h3>{{label}}</h3>
+          <div class="food-details">
+        <p>Source: {{source}}</p>
         <p>Calories: {{calories}} kcal</p>
         <p>Sugar: {{sugar}} g</p>
+        <div class="nutrition-info">
+          <p><a href="{{url}}" target="_blank" class"view-recipe-btn">Recipe</a></p>
+        </div>
         <button class="saveFood" data-id="{{this.id}}" data-label="{{label}}" data-source="{{source}}" data-image="{{image}}" data-url="{{url}}" data-calories="{{calories}}" data-sugar="{{sugar}}">
           Save Selection
         </button>
       </div>
+    </div>
+    </div>
       {{/if}}
     {{/each}}
   {{else}}
     <p>No food recommendations available at the moment.</p>
   {{/if}}
-</div>
-
-
+  </div>
   </section>
-
+</div>
+</section>
     {{>footer}}
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
