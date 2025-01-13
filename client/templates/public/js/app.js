@@ -95,6 +95,7 @@ function showFoodRecommendations(bloodSugar) {
 }
 
 // **********************
+// Grab data of current user
 async function fetchUserData() {
   const authToken = localStorage.getItem("authtoken");
 
@@ -158,7 +159,7 @@ function simulateLogout() {
   updateNavLinks();
 }
 
-// Post request for storing blood sugar
+// Store sugar to current user
 async function recordSugar(sugar) {
   const authToken = localStorage.getItem("authtoken");
 
@@ -190,6 +191,7 @@ async function recordSugar(sugar) {
   }
 }
 
+// Fetching sugar data based on user
 async function fetchSugarData() {
   const authToken = localStorage.getItem("authtoken");
 
@@ -212,5 +214,57 @@ async function fetchSugarData() {
     } catch (err) {
       console.log(err, "Error");
     }
+  }
+}
+
+// Add recipe to current user
+const addRecipeBtn = document.getElementById('saveFood');
+
+addRecipeBtn.addEventListener('click', async function(event) {
+  const foodData = {
+      label: event.target.dataset.label,
+      source: event.target.dataset.source,
+      image: event.target.dataset.image,
+      url: event.target.dataset.url,
+      calories: parseInt(event.target.dataset.calories),
+      sugar: parseFloat(event.target.dataset.sugar),
+    };
+    try {
+    await saveRecipe(foodData); 
+    console.log(foodData, '<<<< foodData')
+    console.log('Recipe added successfully!');
+    } catch (err) {
+      console.log('Error adding recipe:', err);
+    } 
+})
+
+async function saveRecipe(foodData) {
+  const authToken = localStorage.getItem("authtoken");
+
+  try {
+    const response = await fetch('/api/recipe', {
+      method: 'POST',
+      headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+      body: JSON.stringify(foodData),
+    });
+
+    const data = await response.json();
+
+    
+    if (await data) {
+      console.log(await data, '<<<< data')
+    }
+
+    if (response.ok) {
+      console.log('Recipe recorded')
+    } else {
+      console.log('Recipe unable to be recorded')
+    }
+
+  } catch (err) {
+    console.log(err, 'Error')
   }
 }

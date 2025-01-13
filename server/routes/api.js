@@ -16,8 +16,8 @@ router.post('/sugar', auth, storeSugar);
 router.get('/getSugar', auth, getSugar);
 
 // API for recipes
-router.post('/recipe', storeRecipe);
-router.get('/getRecipe', getRecipe);
+router.post('/recipe', auth, storeRecipe);
+router.get('/getRecipe', auth, getRecipe);
 
 
 module.exports = router;

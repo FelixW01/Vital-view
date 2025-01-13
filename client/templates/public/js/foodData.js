@@ -12,7 +12,7 @@ const callApi = async (query) => {
       const response = await axios.get(url);
   
       if (response.data.hits && response.data.hits.length > 0) {
-        console.log(response.data.hits[0], '<<<< hits here')
+        // console.log(response.data.hits[0], '<<<< hits here')
         return response.data.hits.map(hit => ({
           label: hit.recipe.label,
           source: hit.recipe.source,
