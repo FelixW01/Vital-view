@@ -95,17 +95,6 @@ h2 {
 .nav-links .btn-nav:hover {
   background-color: white;
 }
-/* #signupLink btn {
-  background-color: #f6f3f3;
-  color: #4a90e2;
-  border-radius: 5px;
-  margin-bottom: 0.5rem;
-}
-#signupLink btn {
-  margin-right: 0.5rem;
-  margin-bottom: 2rem;
-  display: inline-block;
-} */
 /******************************************************************************** Hamburger Menu **************************************************************************/
 .hamburger {
   display: none;
@@ -169,13 +158,17 @@ h2 {
 
 /************************************************************************** Graph Page *****************************************************/
 .container {
-  max-width: 900px;
+  max-width: 100%;
   margin: 20px auto;
   padding: 20px;
   background-color: #f5f5f5;
   color: #003b5c;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
+}
+.container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
 }
 
 .topTitle {
@@ -194,13 +187,13 @@ h2 {
   justify-content: space-between;
   align-items: flex-start;
   margin-top: 30px;
+  flex-wrap: wrap;
 }
 
 .input-section {
   margin-bottom: 1px;
   flex: 1;
-  /* margin-top: 90px; */
-  margin-left: 5rem;
+  margin-left: 3rem;
   padding-right: 40px;
   max-width: 350px;
   width: 90%;
@@ -209,6 +202,7 @@ h2 {
   flex-direction: column;
   align-items: center;
   border-radius: 30px;
+  background-color: #ffffff;
 }
 
 .input-section label {
@@ -223,7 +217,7 @@ h2 {
   padding: 14px 18px;
   font-size: 1em;
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 3px;
   width: 100%;
   margin-top: 30px;
   font-size: 20px;
@@ -234,8 +228,9 @@ h2 {
 .chart-section {
   margin-bottom: 1px;
   flex: 2;
-  padding-left: 20px;
+  /* padding-left: 20px; */
 }
+
 #bloodSugarChart {
   width: 100% !important;
   height: 400px;
@@ -288,7 +283,7 @@ canvas {
 }
 
 .food-item {
-  /* background-color: #ffffff; */
+  background-color: #ffffff;
   padding: 20px;
   border-radius: 12px;
   box-sizing: border-box;
@@ -302,7 +297,6 @@ canvas {
 .food-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
-  border-block-color: black;
 }
 
 .food-item img {
@@ -357,7 +351,6 @@ canvas {
 }
 .food-item .food-details {
   display: flex;
-  gap: 70px;
 }
 
 .food-item .nutrition-info span {
@@ -365,7 +358,7 @@ canvas {
 }
 
 .saveFood {
-  /* padding: 2px 8px 0; */
+  /* padding: 2px 8px; */
   font-size: 12px;
   background-color: #4a90e2;
   color: white;
@@ -395,14 +388,14 @@ canvas {
 
 .sticky-text h3 {
   color: #216d90;
-  font-size: 3rem;
+  font-size: 2rem;
   text-align: left;
   padding-bottom: 3rem;
 }
 
 .sticky-text p {
   color: #12547a;
-  font-size: 1.5rem;
+  font-size: 1rem;
   text-align: left;
   padding-bottom: 3rem;
 }
@@ -414,11 +407,14 @@ canvas {
   padding-right: 50px;
   max-width: 350px;
   width: 100%;
-  height: 80%;
+  height: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 30px;
+  margin-right: 3rem;
+  background-color: white;
+  margin-top: 1rem;
 }
 
 #recipeSearchForm label {
@@ -441,6 +437,7 @@ canvas {
   font-size: 20px;
   margin-bottom: 30px;
   outline: none;
+  margin-left: 2rem;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -462,7 +459,7 @@ canvas {
   cursor: pointer;
   border-radius: 6px;
   width: 200px;
-  /* margin-left: 4rem; */
+  margin-left: 2rem;
   margin-bottom: 30px;
 }
 
@@ -471,7 +468,7 @@ canvas {
   color: black;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .recommendations-container {
     flex-direction: column;
     padding: 10px;
@@ -518,39 +515,28 @@ canvas {
 
   #recipeSearchForm {
     margin-top: 20px;
-    width: 100%;
+    width: 60%;
     flex: 1;
-    margin-left: 6rem;
+    margin-left: 7rem;
+  }
+  .sticky-text h3 {
+    display: none;
   }
 
+  .sticky-text p {
+    display: none;
+  }
   #recipeSearchForm input,
   #recipeSearchForm button {
     width: 100%;
     margin-bottom: 10px;
+    margin-left: 3rem;
   }
 
   #recipeSearchForm label {
     font-size: 16px;
   }
 }
-
-/* @media (min-width: 900px) {
-  .recommendations-container {
-    justify-content: space-between;
-  }
-
-  #foodRecommendations {
-    flex: 1 1 23%;
-  }
-
-  .food-item img {
-    width: 30%;
-  }
-
-  #recipeSearchForm {
-    flex: 1 1 30%;
-  }
-} */
 
 /**************************************************************** LOGIN Page ***********************************************************************************************************/
 .login-container {
@@ -566,8 +552,10 @@ canvas {
 .left-image {
   flex: 1;
   max-width: 100%;
-  padding-left: 15rem;
+
   display: flex;
+  justify-content: center;
+  align-items: center;
 
   /* justify-content: center; */
 }
@@ -675,10 +663,10 @@ canvas {
   display: flex;
   flex-direction: row;
   /* height: 100vh; */
-  justify-content: center;
+  justify-content: right;
   padding-top: 40px;
   padding-bottom: 40px;
-  margin-left: 10rem;
+  margin-left: 339px;
 }
 
 /******************************************************************** Sign-Up Page ************************************************************************************ */
@@ -686,13 +674,14 @@ canvas {
   background-color: #f5f5f5;
   justify-content: center;
   box-shadow: 50 4px 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
+  /* width: 100%; */
   max-width: 1200px;
   display: flex;
   height: 90%;
   margin-left: 25%;
   background-color: #e4edf2;
   margin-top: 20px;
+  flex-wrap: wrap;
 }
 .right-image {
   flex: 1;
@@ -917,12 +906,18 @@ footer .copyright {
     display: none;
   }
 
+  .Form {
+    margin-left: 2rem;
+    margin-right: 3rem;
+  }
+
   .login-form {
-    width: 60%;
-    max-width: 350px;
+    width: 100%;
+    max-width: 950px;
     padding: 10px;
     margin-top: 20px;
     height: auto;
+    margin-left: 10px;
   }
 
   .login-form h2 {
@@ -1003,7 +998,7 @@ footer .copyright {
   .input-section {
     width: 60%;
     margin-bottom: 20px;
-    margin-left: 10px;
+    margin-left: 30px;
   }
   .input-section label {
     margin-top: 1rem;
@@ -1012,18 +1007,15 @@ footer .copyright {
     margin-bottom: 10px;
   }
   .topTitle {
-    border-bottom: none;
-  }
-  .topTitle {
     color: #216d90;
     font-size: 2rem;
   }
 }
 
-@media (max-width: 430px) {
+@media (max-width: 480px) {
   .signup-container {
     margin-left: 0;
-    padding: 15px;
+    /* padding: 15px; */
   }
 
   .signup-form {
@@ -1050,6 +1042,137 @@ footer .copyright {
 
   .terms-info {
     font-size: 10px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .input-chart-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .Form {
+    margin-left: 59px;
+    justify-content: center;
+  }
+
+  .topTitle {
+    text-align: center;
+    margin-right: 4rem;
+    font-size: 1.8rem;
+  }
+  .input-section {
+    margin-left: 0;
+    padding-right: 20px;
+    max-width: 100%;
+    width: 90%;
+    margin-bottom: 20px;
+  }
+
+  .chart-section {
+    margin-top: 20px;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  #bloodSugarChart {
+    height: 300px;
+  }
+
+  .recommendations-container {
+    flex-direction: column;
+    align-items: center;
+    /* gap: 20rem; */
+  }
+
+  #foodRecommendations {
+    padding: 20px;
+    width: 100%;
+  }
+
+  .food-item {
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 1rem;
+  }
+
+  .food-item img {
+    width: 80%;
+    height: auto;
+  }
+
+  .food-item h3 {
+    font-size: 1.5em;
+    text-align: center;
+  }
+
+  .food-item p {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .sticky-text h3,
+  .sticky-text p {
+    display: none;
+  }
+
+  #recipeSearchForm {
+    width: 100%;
+    margin-left: 0rem;
+  }
+
+  #recipeSearchForm input,
+  #recipeSearchForm button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  #recipeSearchForm label {
+    font-size: 16px;
+  }
+  .signup-container {
+    /* margin-top: 50px; */
+    /* padding: 40px; */
+    margin-bottom: 4rem;
+    margin-left: 1rem;
+    /* width: 50%; */
+  }
+
+  .right-image img {
+    width: 90%;
+    object-fit: cover;
+  }
+
+  .signup-form {
+    max-width: 360px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    margin-bottom: 3rem;
+  }
+
+  .signup-form h2 {
+    font-size: 32px;
+    margin-top: 40px;
+  }
+
+  .input-group input,
+  .input-group select {
+    font-size: 18px;
+    padding: 14px;
+  }
+
+  .btn {
+    font-size: 18px;
+    padding: 14px;
+  }
+
+  .signin-link {
+    font-size: 16px;
+  }
+
+  .terms-info {
+    font-size: 16px;
   }
 }
 
