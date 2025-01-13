@@ -217,10 +217,10 @@ async function fetchSugarData() {
   }
 }
 
-// Add recipe to current user
-const addRecipeBtn = document.getElementById('saveFood');
 
-addRecipeBtn.addEventListener('click', async function(event) {
+const addRecipeBtns = document.querySelectorAll('.saveFood');
+// Add event listener to buttons and trigger saveRecipe
+addRecipeBtns.addEventListener('click', async function(event) {
   const foodData = {
       label: event.target.dataset.label,
       source: event.target.dataset.source,
@@ -238,6 +238,7 @@ addRecipeBtn.addEventListener('click', async function(event) {
     } 
 })
 
+// Function for saving recipes
 async function saveRecipe(foodData) {
   const authToken = localStorage.getItem("authtoken");
 
