@@ -8,40 +8,42 @@ let bloodSugarLevels = [];
 let timeLabels = [];
 let lastTimestamp = 0;
 
-const ctx = document.getElementById("bloodSugarChart").getContext("2d");
-const bloodSugarChart = new Chart(ctx, {
-  type: "line",
-  data: {
-    labels: timeLabels,
-    datasets: [
-      {
-        label: "Blood Sugar Level (mg/dL)",
-        data: bloodSugarLevels,
-        borderColor: "#003B5C",
-        backgroundColor: "#D9534F",
-        fill: true,
-      },
-    ],
-  },
-  options: {
-    responsive: true,
-    scales: {
-      x: {
-        type: "linear",
-        position: "bottom",
-        title: {
-          display: true,
-          text: "Time (s)",
+document.addEventListener("DOMContentLoaded", () => {
+  const ctx = document.getElementById("bloodSugarChart").getContext("2d");
+  const bloodSugarChart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: timeLabels,
+      datasets: [
+        {
+          label: "Blood Sugar Level (mg/dL)",
+          data: bloodSugarLevels,
+          borderColor: "#003B5C",
+          backgroundColor: "#D9534F",
+          fill: true,
         },
-      },
-      y: {
-        title: {
-          display: true,
-          text: "Blood Sugar Level (mg/dL)",
+      ],
+    },
+    options: {
+      responsive: true,
+      scales: {
+        x: {
+          type: "linear",
+          position: "bottom",
+          title: {
+            display: true,
+            text: "Time (s)",
+          },
+        },
+        y: {
+          title: {
+            display: true,
+            text: "Blood Sugar Level (mg/dL)",
+          },
         },
       },
     },
-  },
+  });
 });
 
 function updateChart() {
@@ -206,22 +208,24 @@ async function fetchSugarData() {
 
 const addRecipeBtns = document.querySelectorAll(".saveFood");
 // Add event listener to buttons and trigger saveRecipe
-addRecipeBtns.addEventListener("click", async function (event) {
-  const foodData = {
-    label: event.target.dataset.label,
-    source: event.target.dataset.source,
-    image: event.target.dataset.image,
-    url: event.target.dataset.url,
-    calories: parseInt(event.target.dataset.calories),
-    sugar: parseFloat(event.target.dataset.sugar),
-  };
-  try {
-    await saveRecipe(foodData);
-    console.log(foodData, "<<<< foodData");
-    console.log("Recipe added successfully!");
-  } catch (err) {
-    console.log("Error adding recipe:", err);
-  }
+addRecipeBtns.forEach((button) => {
+  button.addEventListener("click", async function (event) {
+    const foodData = {
+      label: event.target.dataset.label,
+      source: event.target.dataset.source,
+      image: event.target.dataset.image,
+      url: event.target.dataset.url,
+      calories: parseInt(event.target.dataset.calories),
+      sugar: parseFloat(event.target.dataset.sugar),
+    };
+    try {
+      await saveRecipe(foodData);
+      console.log(foodData, "<<<< foodData");
+      console.log("Recipe added successfully!");
+    } catch (err) {
+      console.log("Error adding recipe:", err);
+    }
+  });
 });
 
 // Function for saving recipes
