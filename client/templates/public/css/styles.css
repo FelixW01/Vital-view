@@ -1186,6 +1186,8 @@ button:hover {
   width: 32%;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: inline-block;
+  float: none;
 }
 
 .resource-box1:hover,
@@ -1197,7 +1199,37 @@ button:hover {
 }
 
 
-.resource-box1 img{
+.resource-box1 img,
+.resource-box2 img,
+.resource-box3 img,
+.resource-box4 img{
   width: 100%
 }
 
+.resource-box1,
+.resource-box2,
+.resource-box3,
+.resource-box4 p {
+  color: #ffffff;
+font-size: 20px;
+margin-top: 10px;
+}
+
+.resource-container {
+  width: 100%;
+}
+
+.resource-container2 {
+  width: 100%;
+}
+/* .resource-box1, 
+.resource-box2 {
+  display: inline-block;
+  float: none;
+}
+
+.resource-box3, 
+.resource-box4 {
+  display: inline-block;
+  float: none;
+} */
