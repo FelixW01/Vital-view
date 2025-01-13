@@ -59,201 +59,200 @@ function updateChart() {
     return;
   }
 
-  //   const currentTime = lastTimestamp + 1;
-  //   lastTimestamp = currentTime;
+  const currentTime = lastTimestamp + 1;
+  lastTimestamp = currentTime;
 
-  //   bloodSugarLevels.push(parseInt(bloodSugarInput));
-  //   timeLabels.push(currentTime);
+  bloodSugarLevels.push(parseInt(bloodSugarInput));
+  timeLabels.push(currentTime);
 
-  //   bloodSugarChart.update();
-  //   recordSugar(bloodSugarInput);
-  //   fetchSugarData();
-  //   showFoodRecommendations(parseInt(bloodSugarInput));
+  bloodSugarChart.update();
+  recordSugar(bloodSugarInput);
+  fetchSugarData();
+  showFoodRecommendations(parseInt(bloodSugarInput));
 
-  //   document.getElementById("bloodSugar").value = "";
+  document.getElementById("bloodSugar").value = "";
+}
+// function showFoodRecommendations(bloodSugar) {
+//   const recommendationsDiv = document.getElementById("foodRecommendations");
+//   recommendationsDiv.innerHTML = "";
 
-  // function showFoodRecommendations(bloodSugar) {
-  //   const recommendationsDiv = document.getElementById("foodRecommendations");
-  //   recommendationsDiv.innerHTML = "";
+//   let recommendations = "";
 
-  //   let recommendations = "";
+//   if (bloodSugar < 70) {
+//     recommendations =
+//       "Your blood sugar is low. Try eating a small snack with 15g of carbohydrates (ex: a glass of juice, a piece of fruit).";
+//   } else if (bloodSugar >= 70 && bloodSugar <= 130) {
+//     recommendations =
+//       "Your blood sugar is within the normal range. Consider eating balanced meals with whole grains, vegetables, and lean proteins.";
+//   } else if (bloodSugar > 130 && bloodSugar <= 180) {
+//     recommendations =
+//       "Your blood sugar is higher than normal. Consider eating more fiber-rich foods like non-starchy vegetables, whole grains, and lean proteins.";
+//   } else {
+//     recommendations =
+//       "Your blood sugar is high. Try to reduce high-carb foods and focus on lean protein, healthy fats, and non-starchy vegetables.";
+//   }
 
-  //   if (bloodSugar < 70) {
-  //     recommendations =
-  //       "Your blood sugar is low. Try eating a small snack with 15g of carbohydrates (ex: a glass of juice, a piece of fruit).";
-  //   } else if (bloodSugar >= 70 && bloodSugar <= 130) {
-  //     recommendations =
-  //       "Your blood sugar is within the normal range. Consider eating balanced meals with whole grains, vegetables, and lean proteins.";
-  //   } else if (bloodSugar > 130 && bloodSugar <= 180) {
-  //     recommendations =
-  //       "Your blood sugar is higher than normal. Consider eating more fiber-rich foods like non-starchy vegetables, whole grains, and lean proteins.";
-  //   } else {
-  //     recommendations =
-  //       "Your blood sugar is high. Try to reduce high-carb foods and focus on lean protein, healthy fats, and non-starchy vegetables.";
-  //   }
+//   recommendationsDiv.innerHTML = recommendations;
+// }
 
-  //   recommendationsDiv.innerHTML = recommendations;
-  // }
+// **********************
+// Grab data of current user
+async function fetchUserData() {
+  const authToken = localStorage.getItem("authtoken");
 
-  // **********************
-  // Grab data of current user
-  async function fetchUserData() {
-    const authToken = localStorage.getItem("authtoken");
-
-    if (authToken) {
-      try {
-        const response = await fetch("/api/me", {
-          method: "GET",
-          headers: {
-            "Content-type": "application/json",
-            Authorization: `Bearer ${authToken}`,
-          },
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          console.log(data, "<<<< data");
-        } else {
-          console.log("User could not be fetched");
-        }
-      } catch (err) {
-        console.log(err, "Error");
-      }
-    }
-    fetchSugarData();
-  }
-
-  fetchUserData();
-  // ********************************************************************************************************************
-  function updateNavLinks() {
-    const authToken = localStorage.getItem("authtoken");
-
-    if (authToken) {
-      document.getElementById("loginLink").style.display = "none";
-      document.getElementById("signupLink").style.display = "none";
-      document.getElementById("signoutLink").style.display = "block";
-    } else {
-      document.getElementById("loginLink").style.display = "block";
-      document.getElementById("signupLink").style.display = "block";
-      document.getElementById("signoutLink").style.display = "none";
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    updateNavLinks();
-  });
-
-  function signOut() {
-    localStorage.removeItem("authtoken");
-
-    updateNavLinks();
-  }
-
-  // Store sugar to current user
-  async function recordSugar(sugar) {
-    const authToken = localStorage.getItem("authtoken");
-
+  if (authToken) {
     try {
-      const response = await fetch("/api/sugar", {
-        method: "POST",
+      const response = await fetch("/api/me", {
+        method: "GET",
         headers: {
           "Content-type": "application/json",
           Authorization: `Bearer ${authToken}`,
         },
-        body: JSON.stringify({ sugar }),
       });
 
-      const data = await response.json();
-
-      if (await data) {
-        console.log(await data, "<<<< data");
-      }
-
       if (response.ok) {
-        console.log("Sugar recorded");
+        const data = await response.json();
+        console.log(data, "<<<< data");
       } else {
-        console.log("Sugar unable to be recorded");
+        console.log("User could not be fetched");
       }
     } catch (err) {
       console.log(err, "Error");
     }
   }
+  fetchSugarData();
+}
 
-  // Fetching sugar data based on user
-  async function fetchSugarData() {
-    const authToken = localStorage.getItem("authtoken");
+fetchUserData();
+// ********************************************************************************************************************
+function updateNavLinks() {
+  const authToken = localStorage.getItem("authtoken");
 
-    if (authToken) {
-      try {
-        const response = await fetch("/api/getSugar", {
-          method: "GET",
-          headers: {
-            "Content-type": "application/json",
-            Authorization: `Bearer ${authToken}`,
-          },
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          console.log(data, "<<<< data");
-        } else {
-          console.log("sugar data could not be fetched");
-        }
-      } catch (err) {
-        console.log(err, "Error");
-      }
-    }
+  if (authToken) {
+    document.getElementById("loginLink").style.display = "none";
+    document.getElementById("signupLink").style.display = "none";
+    document.getElementById("signoutLink").style.display = "block";
+  } else {
+    document.getElementById("loginLink").style.display = "block";
+    document.getElementById("signupLink").style.display = "block";
+    document.getElementById("signoutLink").style.display = "none";
   }
+}
 
-  const addRecipeBtns = document.querySelectorAll(".saveFood");
-  // Add event listener to buttons and trigger saveRecipe
-  addRecipeBtns.forEach((button) => {
-    button.addEventListener("click", async function (event) {
-      const foodData = {
-        label: event.target.dataset.label,
-        source: event.target.dataset.source,
-        image: event.target.dataset.image,
-        url: event.target.dataset.url,
-        calories: parseInt(event.target.dataset.calories),
-        sugar: parseFloat(event.target.dataset.sugar),
-      };
-      try {
-        await saveRecipe(foodData);
-        console.log(foodData, "<<<< foodData");
-        console.log("Recipe added successfully!");
-      } catch (err) {
-        console.log("Error adding recipe:", err);
-      }
+document.addEventListener("DOMContentLoaded", () => {
+  updateNavLinks();
+});
+
+function signOut() {
+  localStorage.removeItem("authtoken");
+
+  updateNavLinks();
+}
+
+// Store sugar to current user
+async function recordSugar(sugar) {
+  const authToken = localStorage.getItem("authtoken");
+
+  try {
+    const response = await fetch("/api/sugar", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${authToken}`,
+      },
+      body: JSON.stringify({ sugar }),
     });
-  });
 
-  // Function for saving recipes
-  async function saveRecipe(foodData) {
-    const authToken = localStorage.getItem("authtoken");
+    const data = await response.json();
 
+    if (await data) {
+      console.log(await data, "<<<< data");
+    }
+
+    if (response.ok) {
+      console.log("Sugar recorded");
+    } else {
+      console.log("Sugar unable to be recorded");
+    }
+  } catch (err) {
+    console.log(err, "Error");
+  }
+}
+
+// Fetching sugar data based on user
+async function fetchSugarData() {
+  const authToken = localStorage.getItem("authtoken");
+
+  if (authToken) {
     try {
-      const response = await fetch("/api/recipe", {
-        method: "POST",
+      const response = await fetch("/api/getSugar", {
+        method: "GET",
         headers: {
           "Content-type": "application/json",
           Authorization: `Bearer ${authToken}`,
         },
-        body: JSON.stringify(foodData),
       });
 
-      const data = await response.json();
-
-      if (await data) {
-        console.log(await data, "<<<< data");
-      }
-
       if (response.ok) {
-        console.log("Recipe recorded");
+        const data = await response.json();
+        console.log(data, "<<<< data");
       } else {
-        console.log("Recipe unable to be recorded");
+        console.log("sugar data could not be fetched");
       }
     } catch (err) {
       console.log(err, "Error");
     }
+  }
+}
+
+const addRecipeBtns = document.querySelectorAll(".saveFood");
+// Add event listener to buttons and trigger saveRecipe
+addRecipeBtns.forEach((button) => {
+  button.addEventListener("click", async function (event) {
+    const foodData = {
+      label: event.target.dataset.label,
+      source: event.target.dataset.source,
+      image: event.target.dataset.image,
+      url: event.target.dataset.url,
+      calories: parseInt(event.target.dataset.calories),
+      sugar: parseFloat(event.target.dataset.sugar),
+    };
+    try {
+      await saveRecipe(foodData);
+      console.log(foodData, "<<<< foodData");
+      console.log("Recipe added successfully!");
+    } catch (err) {
+      console.log("Error adding recipe:", err);
+    }
+  });
+});
+
+// Function for saving recipes
+async function saveRecipe(foodData) {
+  const authToken = localStorage.getItem("authtoken");
+
+  try {
+    const response = await fetch("/api/recipe", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${authToken}`,
+      },
+      body: JSON.stringify(foodData),
+    });
+
+    const data = await response.json();
+
+    if (await data) {
+      console.log(await data, "<<<< data");
+    }
+
+    if (response.ok) {
+      console.log("Recipe recorded");
+    } else {
+      console.log("Recipe unable to be recorded");
+    }
+  } catch (err) {
+    console.log(err, "Error");
   }
 }
