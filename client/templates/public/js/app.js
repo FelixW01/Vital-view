@@ -129,20 +129,20 @@ fetchUserData();
 //   updateNavLinks();
 // }
 
-// function updateNavLinks() {
-//   const authToken = localStorage.getItem("authtoken");
+function updateNavLinks() {
+  const authToken = localStorage.getItem("authtoken");
 
-//   if (authToken) {
-//     document.getElementById("loginLink").style.display = "none";
-//     document.getElementById("signupLink").style.display = "none";
-//     document.getElementById("signoutLink").style.display = "block";
-//   } else {
-//     document.getElementById("loginLink").style.display = "block";
-//     document.getElementById("signupLink").style.display = "block";
-//     document.getElementById("signoutLink").style.display = "none";
-//   }
-// }
-
+  if (authToken) {
+    document.getElementById("loginLink").style.display = "none";
+    document.getElementById("signupLink").style.display = "none";
+    document.getElementById("signoutLink").style.display = "block";
+  } else {
+    document.getElementById("loginLink").style.display = "block";
+    document.getElementById("signupLink").style.display = "block";
+    document.getElementById("signoutLink").style.display = "none";
+  }
+}
+updateNavLinks();
 // window.addEventListener("DOMContentLoaded", updateChart);
 
 // function signOut() {
