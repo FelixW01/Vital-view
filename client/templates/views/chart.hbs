@@ -60,7 +60,7 @@
 
   {{#if food.length}}
     {{#each food}}
-      {{#if this.label}} <!-- Ensure only valid items are rendered -->
+      {{#if this.label}}
       <div class="food-item">
         <h3>{{label}}</h3>
         <p>Source: {{source}}</p>
@@ -68,6 +68,9 @@
         <p><a href="{{url}}" target="_blank">View Recipe</a></p>
         <p>Calories: {{calories}} kcal</p>
         <p>Sugar: {{sugar}} g</p>
+        <button class="saveFood" data-id="{{this.id}}" data-label="{{label}}" data-source="{{source}}" data-image="{{image}}" data-url="{{url}}" data-calories="{{calories}}" data-sugar="{{sugar}}">
+          Save Selection
+        </button>
       </div>
       {{/if}}
     {{/each}}
