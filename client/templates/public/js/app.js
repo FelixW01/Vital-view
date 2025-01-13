@@ -57,19 +57,19 @@ function updateChart() {
     return;
   }
 
-  const currentTime = lastTimestamp + 1;
-  lastTimestamp = currentTime;
+//   const currentTime = lastTimestamp + 1;
+//   lastTimestamp = currentTime;
 
-  bloodSugarLevels.push(parseInt(bloodSugarInput));
-  timeLabels.push(currentTime);
+//   bloodSugarLevels.push(parseInt(bloodSugarInput));
+//   timeLabels.push(currentTime);
 
-  bloodSugarChart.update();
-  recordSugar(bloodSugarInput);
-  fetchSugarData();
-  showFoodRecommendations(parseInt(bloodSugarInput));
+//   bloodSugarChart.update();
+//   recordSugar(bloodSugarInput);
+//   fetchSugarData();
+//   showFoodRecommendations(parseInt(bloodSugarInput));
 
-  document.getElementById("bloodSugar").value = "";
-}
+//   document.getElementById("bloodSugar").value = "";
+
 
 // function showFoodRecommendations(bloodSugar) {
 //   const recommendationsDiv = document.getElementById("foodRecommendations");
@@ -124,10 +124,10 @@ async function fetchUserData() {
 
 fetchUserData();
 // ********************************************************************************************************************
-// function signOut() {
-//   localStorage.removeItem("authtoken");
-//   updateNavLinks();
-// }
+function signOut() {
+  localStorage.removeItem("authtoken");
+  updateNavLinks();
+}
 
 function updateNavLinks() {
   const authToken = localStorage.getItem("authtoken");
@@ -255,4 +255,5 @@ async function saveRecipe(foodData) {
   } catch (err) {
     console.log(err, "Error");
   }
+}
 }
