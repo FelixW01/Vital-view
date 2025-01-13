@@ -8,6 +8,7 @@ let bloodSugarLevels = [];
 let timeLabels = [];
 let lastTimestamp = 0;
 
+document.addEventListener("DOMContentLoaded", () => {
 const ctx = document.getElementById("bloodSugarChart").getContext("2d");
 const bloodSugarChart = new Chart(ctx, {
   type: "line",
@@ -42,6 +43,7 @@ const bloodSugarChart = new Chart(ctx, {
       },
     },
   },
+});
 });
 
 function updateChart() {
@@ -262,4 +264,3 @@ async function saveRecipe(foodData) {
     console.log(err, "Error");
   }
 }
-alert('hi')
