@@ -43,7 +43,7 @@
 
 <section>
  <h2 class="topTitle">Food Recommendations</h2>
-    <div class="recommendations-container">
+<div class="recommendations-container">
   <section class="search-form-section">
   <form id="recipeSearchForm" action="/chart" method="GET">
     <label for="searchInput">Search for recipes:</label>
@@ -53,6 +53,7 @@
     <h3>Diabetes in the USA</h3>
 <p>Over 34 million Americans have diabetes, and another 88 million have prediabetes. Diabetes is a chronic condition that can affect many aspects of your life.</p><p>Good nutrition not only controls glucose (blood sugar) levels, but also improves cholesterol and blood pressure.</p></div>
   </form>
+
  </section>
   <div id="foodRecommendations">
   {{#if food.length}}
@@ -67,7 +68,7 @@
         <p>Calories: {{calories}} kcal</p>
         <p>Sugar: {{sugar}} g</p>
         <div class="nutrition-info">
-          <p><a href="{{url}}" target="_blank" class"view-recipe-btn">Recipe</a></p>
+          <p><a href="{{url}}" target="_blank" class="view-recipe-btn">Recipe</a></p>
         </div>
         <button class="saveFood" data-id="{{this.id}}" data-label="{{label}}" data-source="{{source}}" data-image="{{image}}" data-url="{{url}}" data-calories="{{calories}}" data-sugar="{{sugar}}">
           Save Selection
@@ -82,8 +83,8 @@
   {{/if}}
   </div>
   </section>
-</div>
-</section>
+{{!-- </div>
+</section> --}}
     {{>footer}}
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
