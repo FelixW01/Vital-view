@@ -126,11 +126,6 @@ async function fetchUserData() {
 
 fetchUserData();
 // ********************************************************************************************************************
-// function signOut() {
-//   localStorage.removeItem("authtoken");
-//   updateNavLinks();
-// }
-
 function updateNavLinks() {
   const authToken = localStorage.getItem("authtoken");
 
@@ -148,8 +143,6 @@ function updateNavLinks() {
 document.addEventListener("DOMContentLoaded", () => {
   updateNavLinks();
 }); 
-
-// window.addEventListener("DOMContentLoaded", updateChart);
 
 function signOut() {
   localStorage.removeItem("authtoken");
