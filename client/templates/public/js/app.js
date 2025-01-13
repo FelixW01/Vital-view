@@ -129,38 +129,31 @@ fetchUserData();
 //   updateNavLinks();
 // }
 
-// function updateNavLinks() {
-//   const authToken = localStorage.getItem("authtoken");
+function updateNavLinks() {
+  const authToken = localStorage.getItem("authtoken");
 
-//   if (authToken) {
-//     document.getElementById("loginLink").style.display = "none";
-//     document.getElementById("signupLink").style.display = "none";
-//     document.getElementById("signoutLink").style.display = "block";
-//   } else {
-//     document.getElementById("loginLink").style.display = "block";
-//     document.getElementById("signupLink").style.display = "block";
-//     document.getElementById("signoutLink").style.display = "none";
-//   }
-// }
+  if (authToken) {
+    document.getElementById("loginLink").style.display = "none";
+    document.getElementById("signupLink").style.display = "none";
+    document.getElementById("signoutLink").style.display = "block";
+  } else {
+    document.getElementById("loginLink").style.display = "block";
+    document.getElementById("signupLink").style.display = "block";
+    document.getElementById("signoutLink").style.display = "none";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateNavLinks();
+}); 
 
 // window.addEventListener("DOMContentLoaded", updateChart);
 
-// function signOut() {
-//   localStorage.removeItem("authtoken");
+function signOut() {
+  localStorage.removeItem("authtoken");
 
-//   updateNavLinks();
-// }
-
-// function simulateLogin() {
-//   localStorgae.removeItem("authtoken", "user-auth-token");
-
-//   updateNavLinks();
-// }
-
-// function simulateLogout() {
-//   localStorage.removeItem("authtoken");
-
-// updateNavLinks();
+  updateNavLinks();
+}
 
 // Store sugar to current user
 async function recordSugar(sugar) {
@@ -269,3 +262,4 @@ async function saveRecipe(foodData) {
     console.log(err, "Error");
   }
 }
+alert('hi')
