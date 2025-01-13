@@ -72,7 +72,6 @@ function updateChart() {
 
   document.getElementById("bloodSugar").value = "";
 }
-
 // function showFoodRecommendations(bloodSugar) {
 //   const recommendationsDiv = document.getElementById("foodRecommendations");
 //   recommendationsDiv.innerHTML = "";
