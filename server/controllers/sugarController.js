@@ -45,7 +45,7 @@ const getSugar = async (req, res) => {
         res.status(200).json({ bloodSugarData: safeResults });
 
     } catch (err) {
-        console.log('Error fetching user', err);
+        console.log('Error fetching blood sugar information', err);
         res.status(500).json({ error: 'Server error' });
     }
 }
