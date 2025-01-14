@@ -1,43 +1,54 @@
 function validateSignupForm(){
-let errors =[];
+const errorsMessagesDiv = document.getElementById("errorMessages");
 
 const btn = document.querySelector('.btn').addEventListener('click', () => {
-    console.log('hello')
+    let errors =[];
+    errorsMessagesDiv.innerHTML = '';
+
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value.trim();
     const firstName = document.getElementById('first-name').value.trim();
     const lastName = document.getElementById('last-name').value.trim();
     
+
+    const emailRegex =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (email === ""){
+        errors.push("Email is required");
+    } else if (!emailRegex.test(email)){
+        errors.push("Enter a Valid Email Address.");
+    }
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+    if(password === ""){
+        errors.push("Password is required");
+    } else if (!passwordRegex.test(password) ){
+        errors.push("Password must be at least 9 characters long.");
+    }
     if(firstName === ""){
         errors.push("First name is required.");
     }
     if (lastName === ""){
         errors.push("Last name is required");
     }
-    const emailRegex =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if (email === ""){
-        errors.push("Email is required");
-    } else if (!emailRegex.test(email)){
-        errors.push("Enter a valid email address.");
-    }
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
-    if(password === ""){
-        errors.push("password is required");
-    } else if (!passwordRegex.test(password) ){
-        errors.push("Password must be at least 9 characters long.");
-    }
     
     if (errors.length > 0){
-        let errorsMessagesHtml = "<ul>";
+        let errorsMessagesHtml = "";
         errors.forEach(function(error){
-            errorsMessagesHtml += "<li>" + error + "</li>";
+            errorsMessagesHtml += "<p>" + error + "</p>";
         });
-        errorsMessagesHtml += "</ul>";
         document.getElementById("errorMessages").innerHTML = errorsMessagesHtml;
         return false;
     }
     return true;
 });
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+
+emailInput.addEventListener('input', ()=> {
+    errorsMessagesDiv.innerHTML = '';
+});
+passwordInput.addEventListener('input', () => {
+    errorsMessagesDiv.innerHTML = '';
+});
 
 }
-console.log(validateSignupForm()), '<< valid';
+validateSignupForm();

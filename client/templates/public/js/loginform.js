@@ -1,8 +1,10 @@
 function validateLoginForm(){
-    let errors = []; 
-
+    const errorsMessagesDiv = document.getElementById("errorMessages");
 
     const btn = document.querySelector('.btn').addEventListener('click', () => {
+        let errors = []; 
+    errorsMessagesDiv.innerHTML = '';
+
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value.trim();
     
@@ -10,29 +12,38 @@ function validateLoginForm(){
         if (email === ""){
             errors.push("Email is required for Login");
         } else if(!emailRegex.test(email)){
-            errors.push("Enter a valid email address");
+            errors.push("Enter a valid Email Address");
         }
     
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
         if (password === ""){
-            errors.push("Password required.")
-        } else if (passwordRegex.test(password)){
-            errors.push("Incorrect Password.")
+            errors = errors.concat("Password required.");
+        } else if (!passwordRegex.test(password)){
+            errors = errors.concat("Incorrect Password.");
         }
     
         
         if (errors.length > 0){
-            let errorsMessagesHtml = "<ul>";
+            let errorsMessagesHtml = "";
             errors.forEach(function(error){
-                errorsMessagesHtml += "<li>" + error + "</li>";
+                errorsMessagesHtml += "<p>" + error + "</p>";
             });
-            errorsMessagesHtml += "</ul>";
             document.getElementById("errorMessages").innerHTML = errorsMessagesHtml;
             return false;
         }
         return true;
     });
+
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+
+    emailInput.addEventListener('input', ()=> {
+        errorsMessagesDiv.innerHTML = '';
+    });
+    passwordInput.addEventListener('input', () => {
+        errorsMessagesDiv.innerHTML = '';
+    });
     }
 
 
-console.log(validateLoginForm()), '<< valid';
+validateLoginForm(), '<< valid';
