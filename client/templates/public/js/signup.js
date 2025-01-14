@@ -28,6 +28,7 @@ registerForm.addEventListener('submit', async e => {
 
     if (response.ok) {
       console.log('Registration Success')
+      window.location.href = "/";
     } else {
       console.log('Registration Failed')
     }
