@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
           label: "Blood Sugar Level (mg/dL)",
           data: bloodSugarLevels,
           borderColor: "#003B5C",
-          backgroundColor: "#FF6F61",
+          backgroundColor: "#FFCCCB",
           fill: true,
         },
       ],
@@ -264,3 +264,4 @@ async function saveRecipe(foodData) {
     console.log(err, "Error");
   }
 }
+
