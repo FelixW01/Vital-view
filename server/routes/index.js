@@ -2,8 +2,6 @@ const express = require("express");
 const router = express.Router();
 const apiRoutes = require("./api");
 const callApi = require("../../client/templates/public/js/foodData");
-//const getSavedRecipes = require("../../client/templates/public/js/app");
-
 // Home page
 router.get("/", (req, res) => {
   res.render("index");
@@ -16,8 +14,7 @@ router.get("/about", (req, res) => {
 
 // Chart/app page
 router.get("/chart", async (req, res) => {
-  const query = req.query.q || "beef"; // Default to 'beef' if no query provided
-  // console.log("Query parameter:", query); // Log the query parameter
+  const query = req.query.q || "chicken"; // Default to 'beef' if no query provided
   try {
     const responseData = await callApi(query); // Pass the query to the API call
     res.render("chart", { food: responseData });
@@ -29,16 +26,10 @@ router.get("/chart", async (req, res) => {
 
 // Saved Recipes Page
 
-router.get("/recipeList", async (req, res) => {
+router.get("/recipeList",  (req, res) => {
   res.render("recipeList");
+});
 
-  try {
-    const responseList = await getSavedRecipes();
-    console.log(responseList);
-  } catch (error) {
-    console.log(error)
-  }
-})
 
 //login page
 router.get("/login", (req, res) => {

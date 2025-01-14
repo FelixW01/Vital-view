@@ -124,32 +124,6 @@ async function fetchUserData() {
 }
 fetchUserData();
 
-const getSavedRecipes = async  () => {
-    const authToken = localStorage.getItem("authtoken");
-
-    if (authToken) {
-      try {
-        const response = await fetch("/api/getRecipe", {
-          method: "GET",
-          headers: {
-            "Content-type": "application/json",
-            Authorization: `Bearer ${authToken}`,
-          },
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          console.log(data, "<<<< data");
-        } else {
-          console.log("Could not get recipes.");
-        }
-      } catch (err) {
-        console.log(err, "Error");
-      }
-    }
-}
-// Need to find a way to call this method from index.js - maybe move it to it's own file
-module.exports = { getSavedRecipes };
 // ********************************************************************************************************************
 function updateNavLinks() {
   const authToken = localStorage.getItem("authtoken");
