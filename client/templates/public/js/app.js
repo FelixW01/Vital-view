@@ -104,6 +104,9 @@ async function fetchUserData() {
       if (response.ok) {
         const data = await response.json();
         console.log(data, "<<<< data");
+
+        localStorage.setItem("user", JSON.stringify(data));
+        updateNavLinks();
       } else {
         console.log("User could not be fetched");
       }
@@ -118,15 +121,28 @@ fetchUserData();
 // ********************************************************************************************************************
 function updateNavLinks() {
   const authToken = localStorage.getItem("authtoken");
+  const user = localStorage.getItem("user");
 
   if (authToken) {
+    const parsedUser = JSON.parse(user);
     document.getElementById("loginLink").style.display = "none";
     document.getElementById("signupLink").style.display = "none";
     document.getElementById("signoutLink").style.display = "block";
+
+    if (user) {
+      document.getElementById(
+        "userGreeting"
+      ).textContent = `Hello, ${parsedUser.firstName} ${parsedUser.lastName}`;
+      document.getElementById("userGreeting").style.display = "block";
+    } else {
+      document.getElementById("userGreeting").textContent = "Hello, Guest";
+      document.getElementById("userGreeting").style.display = "block";
+    }
   } else {
     document.getElementById("loginLink").style.display = "block";
     document.getElementById("signupLink").style.display = "block";
     document.getElementById("signoutLink").style.display = "none";
+    document.getElementById("userGreeting").style.display = "none";
   }
 }
 
