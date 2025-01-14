@@ -5,6 +5,12 @@ body {
     padding: 0;
   }
   
+h1 {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
   #recipes-container {
     display: flex;
     flex-wrap: wrap;
