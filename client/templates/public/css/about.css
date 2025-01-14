@@ -257,3 +257,54 @@ h6{
 
 
 
+@media (max-width: 1024px) {
+    h2 {
+        font-size: 2rem;
+    }
+    h6 {
+        font-size: 1.8rem;
+    }
+    .top-container1, .top-container2,
+    .middle-container1, .middle-container2,
+    .bottom-container1, .bottom-container2 {
+        max-width: 700px;
+    }
+    .resource-box2 p, .resource-box4 p,
+    .resource-box6 p, .resource-box8 p,
+    .resource-box10 p, .resource-box12 p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    h2 {
+        font-size: 1.8rem;
+    }
+    h6 {
+        font-size: 1.6rem;
+    }
+    .top-resource, .middle-resource, .bottom-resource {
+        flex-direction: column;
+        margin: 0 10px;
+    }
+    .top-container1, .top-container2,
+    .middle-container1, .middle-container2,
+    .bottom-container1, .bottom-container2 {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 1.5rem;
+    }
+    h6 {
+        font-size: 1.4rem;
+    }
+    .resource-box2 p, .resource-box4 p,
+    .resource-box6 p, .resource-box8 p,
+    .resource-box10 p, .resource-box12 p {
+        font-size: 0.8rem;
+    }
+}
+
