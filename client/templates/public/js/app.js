@@ -113,8 +113,8 @@ async function fetchUserData() {
   }
   fetchSugarData();
 }
-
 fetchUserData();
+
 // ********************************************************************************************************************
 function updateNavLinks() {
   const authToken = localStorage.getItem("authtoken");
