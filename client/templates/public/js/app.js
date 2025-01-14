@@ -194,10 +194,8 @@ async function fetchSugarData() {
 
         // Populate sugar data per user
         data.bloodSugarData.forEach((entry) => {
-          console.log(entry.measurement_date, '<<< created_at date');
             const formattedTime = new Date(entry.measurement_date);
              if (!isNaN(formattedTime)) {
-              console.log(formattedTime, '<<< Valid formatted time');
               bloodSugarLevels.push(entry.level);
               timeLabels.push(formattedTime);
             } else {
