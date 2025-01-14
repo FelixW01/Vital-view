@@ -15,33 +15,96 @@
     {{>header}}
   
       <div class="hero-container">
-          <!-- Original slides -->
           <div class="slide">
-            <img src="images/newheroimage.jpg" alt="Image 1"/>
+            <img src="images/homePageImg.png" alt="Image 1"/>
           </div>
+           <div class="text-content">
+            <h1 class="topTag">Your diabetes data, simply there</h1>
+            <p class="topP">At Vital View, we empower individuals to take control of their health by prioritizing blood sugar management. Our mission is to provide innovative, user-friendly solutions for tracking and optimizing blood sugar levels. Through education and support, we aim to build a community where everyone can lead healthier, vibrant lives free from blood sugar complications. 
+              </p>
+              </div>
         </div>
 
-        <section class="index-navsection"> <!-- This class is for the top section which is called navsection because it's at the top-->
+        <section class="index-navsection">
     <div class="content-column">
         <div class="index-center_nav_section">
-            <h1>Our Mission Statement</h1>
-            <p>At Vital View, we empower individuals to take control of their health by prioritizing blood sugar management. Our mission is to provide innovative, user-friendly solutions for tracking and optimizing blood sugar levels. Through education and support, we aim to build a community where everyone can lead healthier, vibrant lives free from blood sugar complications. 
-              </p>
+          <h3>You Can Manage and Thrive with Diabetes</h3>
               <p>The reason we want people to use this app is because we believe we have made an app that makes it simple and very easy to monitor as well as recommend healthier food choices. Our app also tells you if your blood sugar levels are too high or if they are too low.</p>
-            </a> 
         </div>
         </div>
-    </div>  
     </section>
 
-      <section class="index-middle-section"> <!-- This class is for the top section which is called navsection because it's at the top-->
+    {{!-- *********************************** --}}
+    <section class="flipText">
+   <div class="row">
+      <div class="image-1">
+        <img src="images/homepage2Img.avif" alt="Image 1" />
+      </div>
+      <div class="text-container">
+        <h2 class="image1-H2">Vital View Logging</h2>
+        <p class="image1P">Ever thought about keeping a diabetes logbook? With Vital View, it’s as easy as pie. Vital View features some fabulous tools to make logging less of a chore. In the vital View app you can log important therapy data such as blood sugar levels. Finding out you have diabetes can be overwhelming, but take a breath knowing you have a community to fall back on and us by your side to help you thrive.</p>
+      </div>
+    </div>
+
+
+        <div class="row reverse">
+      <div class="text-container">
+        <h2 class="image2-H2">Physical Necessary Tools</h2>
+        <p class="image2Text">Without the glucose meter you aren't able to get the proper blood levels. The Lancet Needle is a special type of needle that is used to draw a small blood sample to use for the Glucose Meter. The Test Strips go inside the Glucose Meter and it uses the blood sample to get accurate details</p>
+      </div>
+      <div class="image-2">
+        <img src="images/GlucoseMon.avif" alt="Image 2" />
+      </div>
+    </div>
+
+        <section class="flipText"></section>
+   <div class="row">
+      <div class="image-3">
+        <img src="images/foodImg3.avif" alt="Image 3" />
+      </div>
+      <div class="text-container">
+        <h2 class="image1-H3">How Food Affects Blood Glucose</h2>
+        <p class="image3P">All foods affect your blood glucose (blood sugar), but some have a bigger impact than others, such as foods high in simple carbs, fat, and calories. Find out how to plan your meals to help manage your blood glucose.Search for recipes for every meal (even snacks and desserts!) and for almost every cuisine type. Food nourishes you so you stay healthy, but our food choices are also impacted by our memories, culture, and community.</p>
+      </div>
+    </div>
+</section>
+
+
+        <section class="resource-section">
+    <div class="resources-column">
+          <h3>Diabetes Resources in Your Area</h3>
+              <p>Get connected to the diabetes resources you need. Find services that assist with medical care, mental health care, nutrition education, housing, advocacy, and much more.</p>
+        </div>
+        <a href="/about"  class="recourseBTN">Resources</a>
+    </section>
+
+ <section class="index-middle-section"> 
+  <div class="index-middle-2-section">
+
+      <img src="images/SugarLevel.jpg" class="middle-image" alt="Blood Sugar Levels">
+      <h5>The image provided is to show the difference between high, medium, as well as low blood sugar levels. A healthy (normal) fasting blood glucose level for someone without diabetes is 70 to 99 mg/dL (3.9 to 5.5 mmol/L). Values between 50 and 70 mg/dL (2.8 to 3.9 mmol/L) for people without diabetes can be “normal” too.</h5>
+ 
+  </div>
+</section>
+{{!-- *************************************** --}}
+
+
+
+
+
+
+
+
+
+{{!-- 
+      <section class="index-middle-section"> 
         <div class="index-middle-2-section">
           <a class="BloodLevels">
             <h1>Blood Sugar Levels</h1>
             <img src="images/bloodchart.png" class="middle-image">
             <h5> The image provided is to show the difference between high, medium, as well as low blood sugar levels.
             </h5>
-              <p>If you'd like to get in person results please refer to our resources page that will give you many places to visit to get that in person expierence </p>
+              <p>If you'd like to get in person results please refer to our resources page that will give you many places to visit to get that in person expierence. </p>
           </a>
         </div>
     </section>
@@ -51,24 +114,23 @@
       <h2>Physical Necessary Tools</h2>
       <div class="info-container">
         <div class="info-box">
-            <img src="images/glucosemeter.webp" alt="Glucose Meter">
+            <img class="toolsImg" src="images/glucosemeter.webp" alt="Glucose Meter">
             <p>Without the glucose meter you aren't able to get the proper blood levels </p>
         </div>
         <div class="info-box2">
-            <img src="images/lancet.jpeg" alt="Lancet Needle">
+            <img class="toolsImg" src="images/lancet.jpeg" alt="Lancet Needle">
             <p>The Lancet Needle is a special type of needle that is used to draw a small blood sample to use for the Glucose Meter </p>
         </div>
         <div class="info-box3">
-            <img src="images/teststrips.jpeg" alt="Test Strips">
+            <img class="toolsImg" src="images/teststrips.jpeg" alt="Test Strips">
             <p>The Test Strips go inside the Glucose Meter and it uses the blood sample to get accurate details</p>
         </div>
     </div>
-    </section>
+    </section> --}}
 
 
 
 
-    </main>
     <!--******************************************************************* footer -->
     {{>footer}}
     <script src="js/app.js"></script>
