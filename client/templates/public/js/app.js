@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
           label: "Blood Sugar Level (mg/dL)",
           data: bloodSugarLevels,
           borderColor: "#003B5C",
-          backgroundColor: "#D9534F",
+          backgroundColor: "#FF6F61",
           fill: true,
         },
       ],
