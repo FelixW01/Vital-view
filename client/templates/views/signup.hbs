@@ -30,13 +30,13 @@
         
           <div class="input-group">
             <label for="first-name">First Name</label>
-            <input type="text" id="first-name" name="first-name" required placeholder="Enter your first name">
+            <input type="text" id="first-name" name="first-name" required placeholder="Enter your first name">          
           </div>
     
         
           <div class="input-group">
             <label for="last-name">Last Name</label>
-            <input type="text" id="last-name" name="last-name" required placeholder="Enter your last name">
+            <input type="text" id="last-name" name="last-name" required placeholder="Enter your last name">          
           </div>
 
           <div class="terms-info">
@@ -52,6 +52,7 @@
           <div class="signin-link">
             <p>Already have an account? <a href="login">Sign In</a></p>
           </div>
+          <div id="errorMessages"></div>
         </form>
       <div class="right-image">
           <img src="/images/family.avif" alt="Diabetes Awareness" />
@@ -60,6 +61,7 @@
 </div>
     {{>footer}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="js/signup.js"></script>
-    </body>
+    <script src="/js/signupForm.js" defer></script>
+    <script src="/js/signup.js"></script>
+  </body>
 </html>

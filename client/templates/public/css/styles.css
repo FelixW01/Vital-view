@@ -1289,6 +1289,16 @@ margin-top: 10px;
   float: none;
 } */
 
+/* ************************ Validation Form Errors ***************************** */
+
+#errorMessages{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  color:#cd0000;
+  font-size: 20px;
+  margin-top:15px;
+}
 /* ************************ My Recipes Buttin ***************************** */
 
 
