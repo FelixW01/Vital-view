@@ -11,8 +11,7 @@ const storeRecipe = async (req, res) => {
     try {
         const query = `
             INSERT INTO food (userId, label, source, image, url, calories, sugar)
-            VALUES (?, ?, ?, ?, ?, ?, ?);
-        `;
+            VALUES (?, ?, ?, ?, ?, ?, ?)`;
         await pool.query(query, [user.id, label, source, image, url, calories, sugar])
         res.status(200).json({ message: 'Recipe recorded' });
     } catch (err) {
@@ -37,11 +36,23 @@ const getRecipe = async (req, res) => {
         if (results.length === 0) {
             return res.status(404).json({ message: 'No recipes found for this user' });
         }
-        const safeResults = results.map(row => {
-            const { email, password, userId, recipeId, firstName, lastName, ...safeRecipeData } = row;
-            return safeRecipeData;
-        });
 
+        const safeResults = results.map(row => {
+            return {
+                foodId: row.foodId,
+                label: row.label,
+                source: row.source,
+                image: row.image,
+                url: row.url,
+                calories: row.calories,
+                sugar: row.sugar,
+                created_at: row.created_at,
+                updated_at: row.updated_at
+            };
+        });
+        
+        
+        // Send sanitized data in the response
         res.status(200).json({ recipeData: safeResults });
 
     } catch (err) {
