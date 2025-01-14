@@ -42,17 +42,24 @@
    </div>
 
 <section>
+
  <h2 class="topTitle">Food Recommendations</h2>
+   <a class="myRecipeBtn" href="/recipeList">Get Saved Recipes</a>
+
 <div class="recommendations-container">
   <section class="search-form-section">
   <form id="recipeSearchForm" action="/chart" method="GET">
     <label for="searchInput">Search for recipes:</label>
     <input type="text" id="searchInput" name="q" placeholder="Example: Chicken">
+    <div id="validationRecipe" class="error-message"></div>
     <button type="submit">Search</button>
     <div class="sticky-text">
-    <h3>Diabetes in the USA</h3>
-<p>Over 34 million Americans have diabetes, and another 88 million have prediabetes. Diabetes is a chronic condition that can affect many aspects of your life.</p><p>Good nutrition not only controls glucose (blood sugar) levels, but also improves cholesterol and blood pressure.</p></div>
-  </form>
+        <h3>Diabetes in the USA</h3>
+        <p>Over 34 million Americans have diabetes, and another 88 million have prediabetes. Diabetes is a chronic condition that can affect many aspects of your life.</p>
+        <p>Good nutrition not only controls glucose (blood sugar) levels, but also improves cholesterol and blood pressure.</p>
+    </div>
+</form>
+
 
  </section>
   <div id="foodRecommendations">
@@ -81,13 +88,15 @@
   {{else}}
     <p>No food recommendations available at the moment.</p>
   {{/if}}
-  </div>
+</div>
+
   </section>
 {{!-- </div>
 </section> --}}
     {{>footer}}
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
     <script src="js/app.js"></script>
   </body>
 </html>

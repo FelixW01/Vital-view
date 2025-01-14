@@ -10,43 +10,56 @@ let timeLabels = [];
 let lastTimestamp = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
-const ctx = document.getElementById("bloodSugarChart").getContext("2d");
-bloodSugarChart = new Chart(ctx, {
-  type: "line",
-  data: {
-    labels: timeLabels,
-    datasets: [
-      {
-        label: "Blood Sugar Level (mg/dL)",
-        data: bloodSugarLevels,
-        borderColor: "#003B5C",
-        backgroundColor: "#D9534F",
-        fill: true,
-      },
-    ],
-  },
-  options: {
-    responsive: true,
-    scales: {
-      x: {
-        type: "linear",
-        position: "bottom",
-        title: {
-          display: true,
-          text: "Time (s)",
+  const ctx = document.getElementById("bloodSugarChart").getContext("2d");
+  bloodSugarChart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: timeLabels,
+      datasets: [
+        {
+          label: "Blood Sugar Level (mg/dL)",
+          data: bloodSugarLevels,
+          borderColor: "#003B5C",
+          backgroundColor: "#FFCCCB",
+          fill: true,
         },
-      },
-      y: {
-        title: {
-          display: true,
-          text: "Blood Sugar Level (mg/dL)",
+      ],
+    },
+    options: {
+      responsive: true,
+      scales: {
+        x: {
+          type: "time",
+          time: {
+            unit: "day",
+            tooltipFormat: 'MM/dd/yy',
+            displayFormats: {
+              minute: 'MM/dd/yy',
+            },
+          },
+          position: "bottom",
+          title: {
+            display: true,
+            text: "Time (Date)",
+          },
+          ticks: {
+            autoSkip: true,
+            maxRotation: 0,
+            minRotation: 0,
+          },
+        },
+        y: {
+          title: {
+            display: true,
+            text: "Blood Sugar Level (mg/dL)",
+          },
         },
       },
     },
-  },
-});
+  });
 });
 
+// Function to update chart
 function updateChart() {
   const bloodSugarInput = document.getElementById("bloodSugar").value;
 
@@ -60,7 +73,7 @@ function updateChart() {
     return;
   }
 
-  const currentTime = lastTimestamp + 1;
+  const currentTime = new Date(); 
   lastTimestamp = currentTime;
 
   bloodSugarLevels.push(parseInt(bloodSugarInput));
@@ -100,8 +113,8 @@ async function fetchUserData() {
   }
   fetchSugarData();
 }
-
 fetchUserData();
+
 // ********************************************************************************************************************
 function updateNavLinks() {
   const authToken = localStorage.getItem("authtoken");
@@ -173,9 +186,24 @@ async function fetchSugarData() {
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data, "<<<< data");
-      } else {
-        console.log("sugar data could not be fetched");
+      
+        console.log(data, '<< data')
+      if(data.bloodSugarData.length > 0) {
+        bloodSugarLevels.length = 0;
+        timeLabels.length = 0
+
+        // Populate sugar data per user
+        data.bloodSugarData.forEach((entry) => {
+            const formattedTime = new Date(entry.measurement_date);
+             if (!isNaN(formattedTime)) {
+              bloodSugarLevels.push(entry.level);
+              timeLabels.push(formattedTime);
+            } else {
+              console.error("Invalid date format:", entry.created_at);
+            }
+          });
+          bloodSugarChart.update();
+        } 
       }
     } catch (err) {
       console.log(err, "Error");
@@ -234,3 +262,36 @@ async function saveRecipe(foodData) {
     console.log(err, "Error");
   }
 }
+
+
+function validateRecipeSearchForm(event) {
+    const input = document.getElementById('searchInput');
+    const validationMessage = document.getElementById('validationRecipe');
+    const query = input.value.trim();
+
+    validationMessage.textContent = '';
+    validationMessage.style.color = 'red';
+
+    if (!query) {
+        validationMessage.textContent = 'Please enter a search term.';
+        event.preventDefault(); 
+        return false;
+    }
+
+    if (query.length < 3) {
+        validationMessage.textContent = 'Search term must be at least 3 characters long.';
+        event.preventDefault();
+        return false;
+    }
+
+    if (!/^[a-zA-Z0-9\s]+$/.test(query)) {
+        validationMessage.textContent = 'Search term can only contain letters, numbers, and spaces.';
+        event.preventDefault();
+        return false;
+    }
+
+    return true; 
+}
+
+// Attach the validation function to the form's submit event
+document.getElementById('recipeSearchForm').addEventListener('submit', validateRecipeSearchForm);
