@@ -1,59 +1,38 @@
-const emailInput = document.querySelector("#email");
-const passwordInput = document.querySelector("#password");
-const submitBtn = document.querySelector(".btn");
-const allInputs = document.querySelectorAll("#loginForm");
+function validateLoginForm(){
+    let errors = []; 
 
-const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-const addError = (input, label) => {
-    input.classList.add("error");
-    label.classList.add("error--message");
-};
-
-const removeError = (input, label) => {
-    input.classList.remove("error");
-    label.classList.remove("error--message");
-};
-
-allInputs.forEach((input) => {
-    const labelElement = input.parentElement.childNodes[1];
-
-    input.addEventListener("input", () => {
-        checkInput(input, labelElement);
+    const btn = document.querySelector('.btn').addEventListener('click', () => {
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+    
+        const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        if (email === ""){
+            errors.push("Email is required for Login");
+        } else if(!emailRegex.test(email)){
+            errors.push("Enter a valid email address");
+        }
+    
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+        if (password === ""){
+            errors.push("Password required.")
+        } else if (passwordRegex.test(password)){
+            errors.push("Incorrect Password.")
+        }
+    
+        
+        if (errors.length > 0){
+            let errorsMessagesHtml = "<ul>";
+            errors.forEach(function(error){
+                errorsMessagesHtml += "<li>" + error + "</li>";
+            });
+            errorsMessagesHtml += "</ul>";
+            document.getElementById("errorMessages").innerHTML = errorsMessagesHtml;
+            return false;
+        }
+        return true;
     });
-});
-
-function checkInput(input, label) {
-    switch(input.id){
-        case "email":
-            if (emailPattern.test(input.value)){
-                removeError(input, label);
-                handleSubmit();
-            } else {
-                addError(input, label);
-                handleSubmit();
-            }
-            break;
-            case "password":
-                if (input.value.length >= 8){
-                    removeError(input, label);
-                } else {
-                    addError(input, label);
-                }
-                break;
-            }
-        handleSubmit();
     }
 
 
-function handleSubmit(){
-    if (
-        emailInput.value === "" ||
-        firstNameInput.value === "" ||
-        lastNameInput.value === ""
-    ) {
-        submitBtn.classList.add("disabled");
-        return;
-    }
-    submitBtn.classList.remove("disabled");
-}
+console.log(validateLoginForm()), '<< valid';
