@@ -263,3 +263,35 @@ async function saveRecipe(foodData) {
   }
 }
 
+
+function validateRecipeSearchForm(event) {
+    const input = document.getElementById('searchInput');
+    const validationMessage = document.getElementById('validationRecipe');
+    const query = input.value.trim();
+
+    validationMessage.textContent = '';
+    validationMessage.style.color = 'red';
+
+    if (!query) {
+        validationMessage.textContent = 'Please enter a search term.';
+        event.preventDefault(); 
+        return false;
+    }
+
+    if (query.length < 3) {
+        validationMessage.textContent = 'Search term must be at least 3 characters long.';
+        event.preventDefault();
+        return false;
+    }
+
+    if (!/^[a-zA-Z0-9\s]+$/.test(query)) {
+        validationMessage.textContent = 'Search term can only contain letters, numbers, and spaces.';
+        event.preventDefault();
+        return false;
+    }
+
+    return true; 
+}
+
+// Attach the validation function to the form's submit event
+document.getElementById('recipeSearchForm').addEventListener('submit', validateRecipeSearchForm);
