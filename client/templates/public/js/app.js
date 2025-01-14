@@ -4,13 +4,14 @@ function toggleMenu() {
   navLinks.classList.toggle("active");
 }
 // *********************************************  Chart  ************************
+let bloodSugarChart;
 let bloodSugarLevels = [];
 let timeLabels = [];
 let lastTimestamp = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
   const ctx = document.getElementById("bloodSugarChart").getContext("2d");
-  const bloodSugarChart = new Chart(ctx, {
+  bloodSugarChart = new Chart(ctx, {
     type: "line",
     data: {
       labels: timeLabels,
@@ -19,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
           label: "Blood Sugar Level (mg/dL)",
           data: bloodSugarLevels,
           borderColor: "#003B5C",
-          backgroundColor: "#D9534F",
+          backgroundColor: "#FFCCCB",
           fill: true,
         },
       ],
@@ -28,11 +29,23 @@ document.addEventListener("DOMContentLoaded", () => {
       responsive: true,
       scales: {
         x: {
-          type: "linear",
+          type: "time",
+          time: {
+            unit: "day",
+            tooltipFormat: 'MM/dd/yy',
+            displayFormats: {
+              minute: 'MM/dd/yy',
+            },
+          },
           position: "bottom",
           title: {
             display: true,
-            text: "Time (s)",
+            text: "Time (Date)",
+          },
+          ticks: {
+            autoSkip: true,
+            maxRotation: 0,
+            minRotation: 0,
           },
         },
         y: {
@@ -46,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// Function to update chart
 function updateChart() {
   const bloodSugarInput = document.getElementById("bloodSugar").value;
 
@@ -59,7 +73,7 @@ function updateChart() {
     return;
   }
 
-  const currentTime = lastTimestamp + 1;
+  const currentTime = new Date(); 
   lastTimestamp = currentTime;
 
   bloodSugarLevels.push(parseInt(bloodSugarInput));
@@ -68,32 +82,9 @@ function updateChart() {
   bloodSugarChart.update();
   recordSugar(bloodSugarInput);
   fetchSugarData();
-  showFoodRecommendations(parseInt(bloodSugarInput));
 
   document.getElementById("bloodSugar").value = "";
 }
-// function showFoodRecommendations(bloodSugar) {
-//   const recommendationsDiv = document.getElementById("foodRecommendations");
-//   recommendationsDiv.innerHTML = "";
-
-//   let recommendations = "";
-
-//   if (bloodSugar < 70) {
-//     recommendations =
-//       "Your blood sugar is low. Try eating a small snack with 15g of carbohydrates (ex: a glass of juice, a piece of fruit).";
-//   } else if (bloodSugar >= 70 && bloodSugar <= 130) {
-//     recommendations =
-//       "Your blood sugar is within the normal range. Consider eating balanced meals with whole grains, vegetables, and lean proteins.";
-//   } else if (bloodSugar > 130 && bloodSugar <= 180) {
-//     recommendations =
-//       "Your blood sugar is higher than normal. Consider eating more fiber-rich foods like non-starchy vegetables, whole grains, and lean proteins.";
-//   } else {
-//     recommendations =
-//       "Your blood sugar is high. Try to reduce high-carb foods and focus on lean protein, healthy fats, and non-starchy vegetables.";
-//   }
-
-//   recommendationsDiv.innerHTML = recommendations;
-// }
 
 // **********************
 // Grab data of current user
@@ -195,9 +186,24 @@ async function fetchSugarData() {
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data, "<<<< data");
-      } else {
-        console.log("sugar data could not be fetched");
+      
+        console.log(data, '<< data')
+      if(data.bloodSugarData.length > 0) {
+        bloodSugarLevels.length = 0;
+        timeLabels.length = 0
+
+        // Populate sugar data per user
+        data.bloodSugarData.forEach((entry) => {
+            const formattedTime = new Date(entry.measurement_date);
+             if (!isNaN(formattedTime)) {
+              bloodSugarLevels.push(entry.level);
+              timeLabels.push(formattedTime);
+            } else {
+              console.error("Invalid date format:", entry.created_at);
+            }
+          });
+          bloodSugarChart.update();
+        } 
       }
     } catch (err) {
       console.log(err, "Error");
@@ -256,3 +262,4 @@ async function saveRecipe(foodData) {
     console.log(err, "Error");
   }
 }
+
