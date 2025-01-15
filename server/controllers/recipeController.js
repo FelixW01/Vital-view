@@ -65,7 +65,8 @@ const deleteRecipe = async (req, res) => {
     try {
         const user = req.user;
         const { foodId } = req.body;
-
+        console.log(foodId, '<<<<<<<< HIT')
+        console.log(user)
         const checkQuery = `
             SELECT * 
             FROM food

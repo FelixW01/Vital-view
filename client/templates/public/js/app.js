@@ -310,18 +310,15 @@ function validateRecipeSearchForm(event) {
   return true;
 }
 
-// Attach the validation function to the form's submit event
-document
-  .getElementById("recipeSearchForm")
-  .addEventListener("submit", validateRecipeSearchForm);
+
 
 
 //Delete Button
 // Add event listener to delete buttons and trigger deleteRecipe
 document.addEventListener("click", async (event) => {
   if (event.target.classList.contains("delete-recipe")) {
-    const foodId = event.target.value; // Get the foodId from the button's value
-
+    const foodId = event.target.value;
+  
     try {
       await deleteRecipe(foodId);
       console.log(`Recipe with ID: ${foodId} deleted successfully!`);
@@ -338,13 +335,14 @@ document.addEventListener("click", async (event) => {
 // Function for deleting recipes
 async function deleteRecipe(foodId) {
   const authToken = localStorage.getItem("authtoken");
-
   try {
-    const response = await fetch(`/api/recipe/${foodId}`, {
+    const response = await fetch(`/api/deleteRecipe`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${authToken}`,
+        "Content-Type": "application/json",
       },
+      body: JSON.stringify({foodId}),
     });
 
     const data = await response.json();
@@ -359,3 +357,7 @@ async function deleteRecipe(foodId) {
   }
 }
 
+// Attach the validation function to the form's submit event
+document
+  .getElementById("recipeSearchForm")
+  .addEventListener("submit", validateRecipeSearchForm);
