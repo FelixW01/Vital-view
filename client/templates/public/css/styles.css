@@ -204,7 +204,6 @@ h2 {
 .chart-section {
   margin-bottom: 1px;
   flex: 2;
-  /* padding-left: 20px; */
 }
 
 #bloodSugarChart {
@@ -1258,7 +1257,6 @@ footer .copyright {
     margin-left: 0rem;
   }
 }
-
 
 /* ************************ Validation Form Errors ***************************** */
 
