@@ -11,6 +11,7 @@ Welcome to Vital View, a full-stack application designed to help individuals tra
 - [Installation](#installation)
 - [Contributing](#contributing)
 - [Questions](#questions)
+- [License](#license)
 
 ## App Demo
 Click to view video
@@ -57,6 +58,8 @@ To run locally, follow these steps:
     ```bash
     http://localhost:3000
     ```
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 ## Contributing
 Felix Willem, Andrea Merlos, Jennifer Guzman, Kevin Castro Guzman, Nate Sherer
 ## Questions
