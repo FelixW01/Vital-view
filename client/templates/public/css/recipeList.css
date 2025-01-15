@@ -5,6 +5,16 @@ body {
     padding: 0;
   }
   
+h1 {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin: 15px;
+  color: #216D90;
+  text-decoration: underline;
+  text-underline-offset: 8px;
+}
+
   #recipes-container {
     display: flex;
     flex-wrap: wrap;
