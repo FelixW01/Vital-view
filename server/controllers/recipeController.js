@@ -61,5 +61,43 @@ const getRecipe = async (req, res) => {
     }
 }
 
+const deleteRecipe = async (req, res) => {
+    try {
+        const user = req.user;
+        const { foodId } = req.body;
+        console.log(foodId, '<<<<<<<< HIT')
+        console.log(user)
+        const checkQuery = `
+            SELECT * 
+            FROM food
+            WHERE foodId = ? AND userId = ?;
+        `;
+        
+        const [checkResults] = await pool.query(checkQuery, [foodId, user.id]);
+
+        if (checkResults.length === 0) {
+            return res.status(404).json({ message: 'Recipe not found or not owned by user' });
+        }
+
+        // Delete the recipe
+        const deleteQuery = `
+            DELETE FROM food
+            WHERE foodId = ? AND userId = ?;
+        `;
+
+        const [deleteResult] = await pool.query(deleteQuery, [foodId, user.id]);
+
+        if (deleteResult.affectedRows === 0) {
+            return res.status(500).json({ message: 'Error deleting recipe' });
+        }
+
+        // Send success response
+        res.status(200).json({ message: 'Recipe deleted successfully' });
+
+    } catch (err) {
+        console.log('Error deleting recipe', err);
+        res.status(500).json({ error: 'Server error' });
+    }
+};
  
-module.exports = { storeRecipe, getRecipe };
+module.exports = { storeRecipe, getRecipe, deleteRecipe };
