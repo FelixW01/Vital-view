@@ -30,6 +30,8 @@ h1 {
     overflow: hidden;
     width: 300px;
     transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
   }
   
   .recipe-card:hover {
@@ -67,3 +69,31 @@ h1 {
   .recipe-card a:hover {
     background-color: #0056b3;
   }
+
+  .delete-recipe {
+    background-color: #ff4d4d;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-bottom: 25px;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  
+  .delete-recipe:hover {
+    background-color: #ff1a1a;
+    transform: translateY(-2px);
+  }
+  
+  .delete-recipe:active {
+    background-color: #e60000;
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  

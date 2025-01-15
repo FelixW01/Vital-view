@@ -310,6 +310,53 @@ function validateRecipeSearchForm(event) {
   return true;
 }
 
+
+
+
+//Delete Button
+// Add event listener to delete buttons and trigger deleteRecipe
+document.addEventListener("click", async (event) => {
+  if (event.target.classList.contains("delete-recipe")) {
+    const foodId = event.target.value;
+  
+    try {
+      await deleteRecipe(foodId);
+      console.log(`Recipe with ID: ${foodId} deleted successfully!`);
+
+      // remove the recipe card from the DOM
+      const recipeCard = event.target.closest(".recipe-card");
+      recipeCard.remove();
+    } catch (err) {
+      console.log("Error deleting recipe:", err);
+    }
+  }
+});
+
+// Function for deleting recipes
+async function deleteRecipe(foodId) {
+  const authToken = localStorage.getItem("authtoken");
+  try {
+    const response = await fetch(`/api/deleteRecipe`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({foodId}),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      console.log("Recipe deleted successfully:", data);
+    } else {
+      console.log("Failed to delete the recipe:", data);
+    }
+  } catch (err) {
+    console.log(err, "Error during deletion");
+  }
+}
+
 // Attach the validation function to the form's submit event
 document
   .getElementById("recipeSearchForm")
