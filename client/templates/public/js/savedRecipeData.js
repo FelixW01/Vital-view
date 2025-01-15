@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <p>Source: ${recipe.source}</p>
           <p>Calories: ${Math.round(recipe.calories)}</p>
           <a href="${recipe.url}" target="_blank">View Recipe</a>
-          <button class="delete-recipe">Delete Recipe</button>
+          <button class="delete-recipe" value=${recipe.foodId}>Delete Recipe</button>
         </div>
       `;
       recipesContainer.innerHTML += recipeCard;

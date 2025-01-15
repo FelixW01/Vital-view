@@ -13,7 +13,8 @@ Welcome to Vital View, a full-stack application designed to help individuals tra
 - [Questions](#questions)
 
 ## App Demo
-
+Click to view video
+[![Watch the video](https://img.youtube.com/vi/y24iWClk2cc/maxresdefault.jpg)](https://youtu.be/y24iWClk2cc)
 
 
 ## Installation

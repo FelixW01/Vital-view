@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
       labels: timeLabels,
       datasets: [
         {
-          label: "Blood Sugar Level (mg/dL)",
+          label: "Blood Glucose Level (mg/dL)",
           data: bloodSugarLevels,
           borderColor: "#003B5C",
           backgroundColor: "#FFCCCB",
@@ -32,9 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
           type: "time",
           time: {
             unit: "day",
-            tooltipFormat: 'MM/dd/yy',
+            tooltipFormat: "MM/dd/yy",
             displayFormats: {
-              minute: 'MM/dd/yy',
+              minute: "MM/dd/yy",
             },
           },
           position: "bottom",
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
         y: {
           title: {
             display: true,
-            text: "Blood Sugar Level (mg/dL)",
+            text: "Blood Glucose Level (mg/dL)",
           },
         },
       },
@@ -69,11 +69,11 @@ function updateChart() {
     bloodSugarInput < 50 ||
     bloodSugarInput > 500
   ) {
-    alert("Please enter a valid blood sugar level between 50 and 500 mg/dL.");
+    alert("Please enter a valid blood glucose level between 50 and 500 mg/dL.");
     return;
   }
 
-  const currentTime = new Date(); 
+  const currentTime = new Date();
   lastTimestamp = currentTime;
 
   bloodSugarLevels.push(parseInt(bloodSugarInput));
@@ -202,16 +202,16 @@ async function fetchSugarData() {
 
       if (response.ok) {
         const data = await response.json();
-      
-        console.log(data, '<< data')
-      if(data.bloodSugarData.length > 0) {
-        bloodSugarLevels.length = 0;
-        timeLabels.length = 0
 
-        // Populate sugar data per user
-        data.bloodSugarData.forEach((entry) => {
+        console.log(data, "<< data");
+        if (data.bloodSugarData.length > 0) {
+          bloodSugarLevels.length = 0;
+          timeLabels.length = 0;
+
+          // Populate sugar data per user
+          data.bloodSugarData.forEach((entry) => {
             const formattedTime = new Date(entry.measurement_date);
-             if (!isNaN(formattedTime)) {
+            if (!isNaN(formattedTime)) {
               bloodSugarLevels.push(entry.level);
               timeLabels.push(formattedTime);
             } else {
@@ -219,7 +219,7 @@ async function fetchSugarData() {
             }
           });
           bloodSugarChart.update();
-        } 
+        }
       }
     } catch (err) {
       console.log(err, "Error");
@@ -279,35 +279,83 @@ async function saveRecipe(foodData) {
   }
 }
 
-
 function validateRecipeSearchForm(event) {
-    const input = document.getElementById('searchInput');
-    const validationMessage = document.getElementById('validationRecipe');
-    const query = input.value.trim();
+  const input = document.getElementById("searchInput");
+  const validationMessage = document.getElementById("validationRecipe");
+  const query = input.value.trim();
 
-    validationMessage.textContent = '';
-    validationMessage.style.color = 'red';
+  validationMessage.textContent = "";
+  validationMessage.style.color = "red";
 
-    if (!query) {
-        validationMessage.textContent = 'Please enter a search term.';
-        event.preventDefault(); 
-        return false;
-    }
+  if (!query) {
+    validationMessage.textContent = "Please enter a search term.";
+    event.preventDefault();
+    return false;
+  }
 
-    if (query.length < 3) {
-        validationMessage.textContent = 'Search term must be at least 3 characters long.';
-        event.preventDefault();
-        return false;
-    }
+  if (query.length < 3) {
+    validationMessage.textContent =
+      "Search term must be at least 3 characters long.";
+    event.preventDefault();
+    return false;
+  }
 
-    if (!/^[a-zA-Z0-9\s]+$/.test(query)) {
-        validationMessage.textContent = 'Search term can only contain letters, numbers, and spaces.';
-        event.preventDefault();
-        return false;
-    }
+  if (!/^[a-zA-Z0-9\s]+$/.test(query)) {
+    validationMessage.textContent =
+      "Search term can only contain letters, numbers, and spaces.";
+    event.preventDefault();
+    return false;
+  }
 
-    return true; 
+  return true;
 }
 
 // Attach the validation function to the form's submit event
-document.getElementById('recipeSearchForm').addEventListener('submit', validateRecipeSearchForm);
+document
+  .getElementById("recipeSearchForm")
+  .addEventListener("submit", validateRecipeSearchForm);
+
+
+//Delete Button
+// Add event listener to delete buttons and trigger deleteRecipe
+document.addEventListener("click", async (event) => {
+  if (event.target.classList.contains("delete-recipe")) {
+    const foodId = event.target.value; // Get the foodId from the button's value
+
+    try {
+      await deleteRecipe(foodId);
+      console.log(`Recipe with ID: ${foodId} deleted successfully!`);
+
+      // remove the recipe card from the DOM
+      const recipeCard = event.target.closest(".recipe-card");
+      recipeCard.remove();
+    } catch (err) {
+      console.log("Error deleting recipe:", err);
+    }
+  }
+});
+
+// Function for deleting recipes
+async function deleteRecipe(foodId) {
+  const authToken = localStorage.getItem("authtoken");
+
+  try {
+    const response = await fetch(`/api/recipe/${foodId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      console.log("Recipe deleted successfully:", data);
+    } else {
+      console.log("Failed to delete the recipe:", data);
+    }
+  } catch (err) {
+    console.log(err, "Error during deletion");
+  }
+}
+
