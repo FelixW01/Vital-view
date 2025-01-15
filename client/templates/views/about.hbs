@@ -3,40 +3,104 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ABOUT</title>
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/styles.css"/>
+    <link rel="stylesheet" href="css/about.css"/>
   </head>
   <body>
     {{>header}}
-    
-    <div class="resource-container">
+{{!-- ************* Top Section ************ --}}
+<h2>Expand Your Horizon With Our Resources!</h2>
+    <div class="all-sections">
+
+<section class="top-resource">
+
+    <div class="top-container1">
+
+      <a href="https://www.redcross.org/" target="_blank">
+      
         <div class="resource-box1">
-          <a href="https://www.redcross.org/" target="_blank">
-            <img src="images/redcross.png" alt="Glucose Meter"> </a>
-            <p>Red Cross</p>
+          <img src="images/redcross.png" alt="Red Cross"></a>
         </div>
+
         <div class="resource-box2">
-          <a href="https://www.walgreens.com/" target="_blank">
-            <img src="images/walgreens.png"  alt="Lancet Needle"> </a>
-            <p>Walgreens</p>
+          <h6>Mission Statement</h6>
+          <p>The Red Cross' mission statement is to prevent and alleviate human suffering in the face of emergencies by mobilizing the power of volunteers and the generosity of donors. They strive to fulfill this mission by providing humanitarian aid to people in need, both domestically and internationally, regardless of nationality, race, religion, gender, or political affiliation.</p>
         </div>
+
     </div>
 
-<div class="resource-conatiner2">
-    <div class="resource-box3">
-      <a href="https://diabetes.org/" target="_blank">
-            <img src="images/ADA.png" alt="Test Strips"> </a>
-            <p>American Diabetes Association</p>
+    <div class="top-container2">
+
+        <div class="resource-box3">
+          <a href="https://www.walgreens.com/" target="_blank">
+          <img src="images/walgreens.png"  alt="Walgreens Logo"></a>
         </div>
 
         <div class="resource-box4">
-          <a href="https://www.cvs.com/" target="_blank">
-            <img src="images/cvslogo.png" alt="Test Strips"> </a>
-            <p>CVS</p>
-        </div>
+          <h6>Mission Statement</h6>
+          <p>Walgreens aims to make healthcare accessible and convenient for everyone, offering pharmacy services, health screenings, and various wellness products. We are committed to fostering healthier lives through accessible pharmacy services, community outreach, and a focus on preventive care, ensuring that everyone can achieve their best health."</p>
         </div>
 
-        <button type="submit">Donate</button>
-      </form>
+    </div>
+
+</section>
+
+{{!-- **************  Middle Section **************  --}}
+
+  <section class="middle-resource">
+    <div class="middle-container1">
+        <div class="resource-box5">
+          <a href="https://diabetes.org/?utm_source=google&utm_medium=paidsearch&utm_campaign=Fundraising-TshirtPremium&utm_content=responsive-search-ad&utm_term=brand-tshirt&gclid=Cj0KCQiAkJO8BhCGARIsAMkswyh7dsJ6dmx8yvnpSxcimT92RLer7i8eVe3HAW5COJrlfV4LXn--jg4aAiv2EALw_wcB" target="_blank">
+          <img src="images/ADA.png" alt="ADA Logo"> </a>
+        </div>
+
+        <div class="resource-box6">
+          <h6>Mission Statement</h6>
+          <p>The ADA invests heavily in diabetes research to find a cure and improve treatment.The ADA works to ensure that people with diabetes have access to quality healthcare and affordable medication.</p>
+        </div>
+    </div>
+        <div class="middle-container2">
+        <div class="resource-box7">
+          <a href="https://www.cvs.com/" target="_blank">
+          <img src="images/cvslogo.png" alt="CVS logo"> </a>
+        </div>
+
+        <div class="resource-box8">
+          <h6>Mission Statement</h6>
+          <p> CVS Health is dedicated to improving the lives of our customers by providing accessible, high-quality healthcare and pharmacy services. We aim to be a trusted partner for our communities, offering a wide range of products and services to meet their needs.  </p>
+        </div>
+    </div>
+</section>
+
+{{!-- *********** Bottom Section ************* --}}
+
+<section class="bottom-resource">
+    <div class="bottom-container1">
+        <div class="resource-box9">
+          <a href="https://www.hope-health.org/" target="_blank">
+          <img src="images/hopehealth.png" alt="Hope Health Logo"> </a>
+        </div>
+
+        <div class="resource-box10">
+          <h6>Mission Statement</h6>
+            <p> Hope Health is dedicated to providing accessible and compassionate healthcare services to underserved communities. We strive to empower individuals to take control of their health through education, prevention, and comprehensive medical care. Our mission is to bridge the gap in healthcare disparities. </p>
+        </div>
+    </div>
+
+      <div class="bottom-container2">
+        <div class="resource-box11">
+          <a href="https://www.diabetescare.abbott/index.html" target="_blank">
+          <img src="images/Abbottlogo.png" alt="Abbott logo"> </a>
+        </div>
+
+        <div class="resource-box12">
+          <h6>Mission Statement</h6>
+          <p>Abbott Diabetes is dedicated to developing cutting-edge technologies and therapies to advance diabetes care.They aim to give people with diabetes the tools and support they need to take control of their health and live fulfilling lives.</p>
+        </div>
+    </div>
+</section>
+</div>
+
 
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       <script src="js/app.js"></script>

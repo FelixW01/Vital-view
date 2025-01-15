@@ -1,0 +1,163 @@
+/* ******************** Global Styles ******************** */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4; 
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  color: #216d90;
+  margin-top: 20px;
+  text-align: center;
+}
+
+h6 {
+  margin-bottom: 22px;
+  font-size: 2rem;
+  color: #003b5c;
+}
+
+/* ******************** Section Styles ******************** */
+.all-sections {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  width: 100%; 
+}
+
+/* ******************** Resource Section Styles ******************** */
+section {
+  width: 80%; 
+  margin: 20px 0; 
+}
+
+.top-resource,
+.middle-resource,
+.bottom-resource {
+  display: flex;
+  flex-direction: column; 
+}
+
+/* ******************** Container Styles ******************** */
+.top-container1,
+.top-container2,
+.middle-container1,
+.middle-container2,
+.bottom-container1,
+.bottom-container2 {
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  margin: 10px 0;
+  overflow: hidden; 
+}
+
+/* ******************** Resource Box Styles ******************** */
+.resource-box1,
+.resource-box2,
+.resource-box3,
+.resource-box4,
+.resource-box5,
+.resource-box6,
+.resource-box7,
+.resource-box8,
+.resource-box9,
+.resource-box10,
+.resource-box11,
+.resource-box12 {
+  flex: 1; 
+  padding: 20px;
+  text-align: center; 
+}
+
+.resource-box1,
+.resource-box2,
+.resource-box3,
+.resource-box4,
+.resource-box5,
+.resource-box6,
+.resource-box7,
+.resource-box8,
+.resource-box9,
+.resource-box10,
+.resource-box11,
+.resource-box12 p {
+    font-size: 25px;
+}
+
+.resource-box1 img,
+.resource-box3 img,
+.resource-box5 img,
+.resource-box7 img,
+.resource-box9 img,
+.resource-box11 img {
+width: 100%;
+height: 500px; 
+border-radius: 10px;
+}
+
+/* ******************** Media Queries ******************** */
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 768px) {
+h2 {
+    font-size: 40px;
+}
+
+h6 {
+    font-size: 1.5rem;
+}
+
+.top-container1,
+.top-container2,
+.middle-container1,
+.middle-container2,
+.bottom-container1,
+.bottom-container2 {
+    flex-direction: column; 
+    height: auto; 
+    width: 90%; 
+  }
+}
+
+/* Small devices (mobile phones, 480px and up) */
+@media (max-width: 480px) {
+  h2 {
+    font-size: 30px;
+  }
+
+  h6 {
+    font-size: 1.2rem;
+  }
+
+  .top-container1,
+  .top-container2,
+  .middle-container1,
+  .middle-container2,
+  .bottom-container1,
+  .bottom-container2 {
+    width: 95%; 
+  }
+
+  .resource-box1,
+  .resource-box2,
+  .resource-box3,
+  .resource-box4,
+  .resource-box5,
+  .resource-box6,
+  .resource-box7,
+  .resource-box8,
+  .resource-box9,
+  .resource-box10,
+  .resource-box11,
+  .resource-box12 {
+    padding: 10px; 
+  }
+}
